@@ -1,0 +1,47 @@
+<div class="profile-container">
+  <mat-card layout-align="center">
+    <!-- class="user-profile-container" -->
+    <mat-card-header>
+      <mat-card-title><h2 class="user-profile-title">User Profile</h2></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="user-profile">
+        <div class="user-profile__avatar">
+          <!--  -->
+          <img class="user-image" src="./../../../assets/img/user.png" alt="User Avatar" />
+        </div>
+        <div class="user-profile__details">
+          <h2 class="user-profile__name">{{user.username}}</h2>
+          <p class="user-profile__email">{{user.email}}</p>
+          <!-- <p class="user-profile__phone">{{user.phoneNumber}}</p>
+          <p class="user-profile__location">{{user.location}}</p> -->
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" (click)="routeToEditProfile()">Edit Profile</button>
+      <button mat-stroked-button color="accent" (click)="routeToChangePwd()">Change Password</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card>
+    <mat-list>
+      <mat-divider></mat-divider>
+      <a routerLink="user-details" [queryParams]="{'section':'education'}"> 
+        <mat-list-item >Education</mat-list-item></a>
+      <mat-divider></mat-divider>
+      <a routerLink="user-details" [queryParams]="{'section':'skills'}"> 
+        <mat-list-item>Skills</mat-list-item></a>
+      <mat-divider></mat-divider>
+      <a routerLink="user-details" [queryParams]="{'section':'skills'}"> 
+        <mat-list-item>Qualification</mat-list-item></a>
+      <mat-divider></mat-divider>
+      <a routerLink="my-jobs"> <mat-list-item>Your Jobs</mat-list-item></a>
+      <mat-divider></mat-divider>
+      <a routerLink="saved-pages"> <mat-list-item>Saved Pages</mat-list-item></a>
+      <mat-divider></mat-divider>
+      <a routerLink="notifications"> <mat-list-item>Notifications</mat-list-item></a>
+      <mat-divider></mat-divider>
+      <a (click)="onClickLogout()"> <mat-list-item>Logout</mat-list-item></a>
+    </mat-list>
+  </mat-card>
+</div>

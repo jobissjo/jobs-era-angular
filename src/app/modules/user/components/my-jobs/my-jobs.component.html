@@ -1,0 +1,41 @@
+<app-update-status *ngIf="showUpdateStatus" 
+[selectedUpdateJobStatus]="updateJobStatus"
+(closeUpdateStatus)="closeUpdateStatus()"></app-update-status>
+<mat-card class="main-container">
+    <mat-card-header class="mat-card-header">
+        <h1 class="title">My Jobs</h1>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <ng-container *ngFor="let job of appliedJobs">
+        <mat-card-content>
+            <div class="row">
+                <mat-card-title>{{job.status}}</mat-card-title>
+                <div>
+                    <button (click)="clickUpdateStatus(job)" mat-flat-button>Update Status</button>
+                </div>
+            </div>
+            <div class="applied-job-details">
+                <a routerLink="details">
+                    <h3>{{job.role}}</h3>
+                </a>
+
+                <ul>
+                    <li>{{job.company}}</li>
+                    <li>{{job.location}}</li>
+                    <li>Applied On {{job.appliedOn}}</li>
+                </ul>
+                <div class="applied-count">
+                    <mat-icon class="mat-icons" aria-hidden="false" aria-label="group">group</mat-icon>
+                    <span> Around {{200}} peoples applied</span>
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+    </ng-container>
+</mat-card>
+
+<!-- <mat-list class=".mat-list" role="list">
+    <mat-list-item class="mat-list-item" role="listitem">{{job.company}}</mat-list-item>
+    <mat-list-item class="mat-list-item" role="listitem">Item 2</mat-list-item>
+    <mat-list-item class="mat-list-item" role="listitem">Item 3</mat-list-item>
+</mat-list> -->

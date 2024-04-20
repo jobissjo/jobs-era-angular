@@ -1,0 +1,56 @@
+<div class="job-application-container">
+    <div class="job-application">
+        <h1>Job Application</h1>
+        <mat-card class="job-detail-info" *ngIf="jobDetails">
+          <mat-card-header>
+            <mat-card-title>{{jobDetails.jobTitle}}</mat-card-title>
+            <mat-card-subtitle>{{jobDetails.company}}</mat-card-subtitle>
+            <mat-card-subtitle>{{jobDetails.location}}</mat-card-subtitle>
+          </mat-card-header>
+        </mat-card>
+        <form [formGroup]="jobApplicationForm" (ngSubmit)="submitJobApplication()">
+          <mat-form-field appearance="fill" class="form-filed">
+            <mat-label>Are you able to commute to work in person?</mat-label>
+            <mat-select formControlName="ableToCommute" >
+              <mat-option [value]="true">Yes</mat-option>
+              <mat-option [value]="false">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+      
+          <div class="file-input">
+            <div class="file-label">
+              <label for="file">Resume</label>
+            </div>
+            <input class="file" type="file" (change)="onFileSelected($event)" #fileInput hidden>
+            <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">Choose File</button>
+            <span>{{ fileName }}</span>
+          </div>
+          <mat-form-field appearance="fill" class="form-filed">
+            <mat-label>Highest Qualification</mat-label>
+            <input placeholder="bachelor" matInput formControlName="highQualification">
+          </mat-form-field>
+          <div>
+          <mat-form-field appearance="fill" class="form-filed">
+            <mat-label>Years of Experience</mat-label>
+            <input placeholder="1" type="number" matInput formControlName="experience">
+          </mat-form-field>
+        </div>
+          <div>
+            <mat-form-field appearance="fill" class="form-filed"> 
+                <mat-label>Cover Letter</mat-label>
+                <textarea placeholder="write something ..." matInput formControlName="coverLetter"></textarea>
+              </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field appearance="fill" class="form-filed"> 
+                <mat-label>Please list 2-3 dates and time ranges that you could do an interview</mat-label>
+                <textarea placeholder="12 Feb (10am), 14 Feb (2pm)" matInput formControlName="interviewDates"></textarea>
+              </mat-form-field>
+          </div>
+      
+          <button mat-raised-button color="primary" type="submit" [disabled]="jobApplicationForm.invalid">Continue</button>
+        </form>
+      </div>
+      
+</div>

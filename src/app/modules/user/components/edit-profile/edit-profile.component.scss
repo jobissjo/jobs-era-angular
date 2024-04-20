@@ -1,0 +1,58 @@
+.title{
+    text-align: center;
+    color: #3f51b5;
+}
+
+.personal-information-container,
+.education-details-container, 
+.qualification-details-container,
+.other-preference-container{
+    width: 60%;
+    margin: auto
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+}
+.delete-btn-conatiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+mat-form-field{
+    width: 40%;
+}
+.personal-details,.location-details,
+[class^="education-detail-"], [class^="certification-detail-"], 
+[class^="experience-detail-"],[class^="languages-detail-"]{
+    padding: 10px;
+    background-color: rgb(210, 210, 210);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+    border-radius: 5px;
+    
+}
+.checkboxes{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .education-details-container, .qualification-details-container, .other-preference-container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .education-details-container, .qualification-details-container, .other-preference-container {
+        width: 70%;
+    }
+}
+
+.spinner-container{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}

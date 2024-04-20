@@ -1,0 +1,28 @@
+<div class="company-container">
+    <h1>Search Your Dream company </h1>
+    <div class="search-container">
+        <mat-form-field>
+            <mat-label for="">Company Name</mat-label>
+            <input matInput placeholder="Zoho">
+        </mat-form-field>
+        <button class="btn" mat-stroked-button type="submit" color="primary" (click)="findCompanies()">Find
+            Companies</button>
+    </div>
+    <div *ngIf="!isSearched; else searchComp">
+        <app-popular-companies [popularCompanies]="details"></app-popular-companies>
+        <div class="rate-banner">
+            <mat-card>
+                <mat-card-content>
+                    <div class="card-row">
+                        <mat-card-title>Rate your recent company! </mat-card-title>
+                        <star-rating direction="ltr" size="large" [rating]="1" [hoverEnabled]="true"></star-rating>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+    </div>
+    <ng-template #searchComp>
+        <app-company-search></app-company-search>
+    </ng-template>
+</div>

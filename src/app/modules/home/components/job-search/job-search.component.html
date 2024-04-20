@@ -1,0 +1,11 @@
+<div class="search-container">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearchClicked()">
+        <input type="text" placeholder="Job Title"
+         formControlName="jobTitle" class="big-input" oninput="if (this.value.includes('/')) { this.size = this.value.length + 2; } else { this.size = 10; }">
+        <input type="text" placeholder="Location" 
+        formControlName="location" class="big-input">
+        <input type="text" placeholder="Experience"
+        formControlName="experience" class="big-input">
+        <button type="submit" class="search-btn">Search</button>
+    </form>
+</div>

@@ -1,0 +1,66 @@
+.job-search-list {
+    padding: 20px;
+  
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    .job-card {
+      margin-bottom: 20px;
+      cursor: pointer;
+  
+      mat-card {
+        width: 60%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: auto;
+      }
+  
+      mat-card-header {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        border-radius: 5px 5px 0 0;
+  
+        h2 {
+          font-size: 20px;
+          margin: 0;
+        }
+  
+        p {
+          margin: 5px 0 0;
+          font-size: 14px;
+          color: #666;
+        }
+      }
+  
+      mat-card-content {
+        padding: 15px;
+  
+        p {
+          margin: 5px 0;
+        }
+      }
+    }
+  
+    .no-results {
+      text-align: center;
+      color: #666;
+  
+      p {
+        margin-bottom: 10px;
+      }
+  
+      a {
+        color: #007bff;
+        text-decoration: none;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  

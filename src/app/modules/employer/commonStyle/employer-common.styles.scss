@@ -1,0 +1,30 @@
+.form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ececec;
+    background-color: #ececec;
+    border-radius: 8px;
+}
+
+.form-control-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+mat-form-field input {
+    width: 100%;
+    // background-color: #b5b5b5;
+}
+
+mat-form-field {
+    // background-color: #b5b5b5;
+    width: 45%;
+}
+
+.form-button-controls {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}

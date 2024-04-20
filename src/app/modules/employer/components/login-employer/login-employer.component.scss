@@ -1,0 +1,41 @@
+
+  
+
+.login-card {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  background-color: #f9f9f9;
+
+  @media (max-width: 576px) { /* Adjust for smaller screens */
+    padding: 15px;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.signup-link {
+  margin-top: 15px; /* Adjust margin based on form field appearance */
+  text-align: center;
+}
+
+/* Optional: Style form fields and button */
+mat-form-field {
+  margin-bottom: 15px; /* Adjust spacing between fields */
+}
+
+mat-input {
+  padding: 10px; /* Adjust padding based on appearance */
+}
+
+mat-raised-button {
+  width: 100%; /* Match full width of container */
+  padding: 12px 20px; /* Adjust padding for better fit */
+  font-size: 16px; /* Adjust font size for readability */
+}
+
+

@@ -1,0 +1,134 @@
+<form [formGroup]="createJobForm" (ngSubmit)="onCreateJobSubmit()">
+    <h1 class="title">Create a Job</h1>
+    <mat-stepper #stepper class="stepper">
+        <mat-step class="step">
+            <ng-template matStepLabel>Fill out basic details</ng-template>
+            <div class="basic-details-container">
+                <!-- <h1 class="title">Basic Details</h1> -->
+                <div class="form-fields">
+                    <mat-form-field>
+                        <mat-label>Job Title</mat-label>
+                        <input matInput placeholder="Python Developer" formControlName="jobTitle" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Company Name</mat-label>
+                        <input matInput placeholder="Jo4Tech" formControlName="company" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Location</mat-label>
+                        <input matInput placeholder="Nagercoil" formControlName="location" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label> Schedule</mat-label>
+                        <input matInput placeholder="Day Shift" formControlName="shift" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Experience</mat-label>
+                        <input matInput placeholder="Fresher" formControlName="experience" />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Job Type</mat-label>
+                        <input matInput placeholder="Full Time" formControlName="jobType" />
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>Salary Range</mat-label>
+                        <input matInput placeholder="20000 - 35000" formControlName="salary" />
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <button type="button" mat-flat-button color="accent" matStepperNext>Next</button>
+                </div>
+            </div>
+        </mat-step>
+        <mat-step label="Fill out qualification details">
+            <div class="qualification-details-container">
+                <div class="form-arrays">
+                    <div class="qualifications" formArrayName="qualifications">
+                        <h2>Qualifications</h2>
+                        <ng-container *ngFor="let control of qualificationArray.controls; let i=index">
+                            <mat-form-field>
+                                <mat-label>Qualification {{i+1}}</mat-label>
+                                <input matInput placeholder="B.E Computer Science" [formControlName]="i" />
+                            </mat-form-field>
+                            <button type="button" mat-flat-button color="warn"
+                                (click)="deleteQualification(i)">Delete</button>
+                        </ng-container>
+                        <div>
+                            <button type="button" mat-flat-button (click)="addQualification()" color="primary">Add
+                                Qualification</button>
+                        </div>
+                    </div>
+
+                    <!-- Skills Array Container -->
+                    <div class="skills" formArrayName="skills">
+                        <h2>Skills</h2>
+                        <ng-container *ngFor="let control of skillsArray.controls; let i=index">
+                            <mat-form-field>
+                                <mat-label>Skills {{i+1}}</mat-label>
+                                <input matInput placeholder="Django" [formControlName]="i">
+                            </mat-form-field>
+                            <button type="button" mat-flat-button color="warn" (click)="deleteSkill(i)">Delete</button>
+                        </ng-container>
+                        <div>
+                            <button type="button" mat-flat-button (click)="addSkill()" color="primary">Add Skills</button>
+                        </div>
+                    </div>
+
+                    <!-- Responsibilities Array Container -->
+                    <div class="responsibilities" formArrayName="responsibilities">
+                        <h2>Responsibilities</h2>
+                        <ng-container *ngFor="let control of responsibilityArray.controls; let i=index">
+                            <mat-form-field>
+                                <mat-label>Responsibility {{i+1}}</mat-label>
+                                <input matInput placeholder="Django" [formControlName]="i">
+                            </mat-form-field>
+                            <button type="button" mat-flat-button color="warn" (click)="deleteResponsibility(i)">Delete</button>
+                        </ng-container>
+                        <div>
+                            <button type="button" mat-flat-button (click)="addResponsibility()" color="primary">Add Responsibility</button>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+
+                    <!-- <div class="desc-container">
+                        <mat-form-field>
+                            <mat-label>Job Description</mat-label>
+                            <textarea matInput formControlName="description"
+                            placeholder="separate ',' with every description" >
+
+                            </textarea>
+                        </mat-form-field>
+                    </div> -->
+                    <div class="responsibilities" formArrayName="description">
+                        <h2>Descriptions</h2>
+                        <ng-container *ngFor="let control of descriptionArray.controls; let i=index">
+                            <mat-form-field>
+                                <mat-label>Description {{i+1}}</mat-label>
+                                <input matInput placeholder="Django" [formControlName]="i">
+                            </mat-form-field>
+                            <button type="button" mat-flat-button color="warn" (click)="deleteResponsibility(i)">Delete</button>
+                        </ng-container>
+                        <div>
+                            <button type="button" mat-flat-button (click)="addDescription()" color="primary">Add Description</button>
+                        </div>
+                    </div>
+
+                </div>
+                <button type="button" mat-button matStepperPrevious color="primary">Back</button>
+                <button type="button" mat-button matStepperNext color="accent">Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>Please verify you entered all the details and Submit</p>
+            <div>
+                <button type="button" color="primary" mat-button matStepperPrevious>Back</button>
+                <!-- <button type="button" color="warn" mat-button (click)="stepper.reset()">Reset</button> -->
+                <button type="submit" color="warn" mat-button >{{updateMode ? 'Update': 'Submit'}}</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+</form>

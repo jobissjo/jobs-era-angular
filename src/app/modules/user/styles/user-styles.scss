@@ -1,0 +1,28 @@
+.main-container {
+    width: 50vw;
+    margin: 10px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title{
+    text-align: center;
+}
+.mat-card-header{
+    display: inline;
+}
+.row{
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width: 1000px){
+    .main-container {
+        width: 60vw;
+    }
+  }
+
+@media screen and (max-width: 700px){
+    .main-container {
+        width: 70vw;
+    }
+  }

@@ -1,0 +1,30 @@
+<div class="popular-companies">
+    <h2>Popular Companies</h2>
+    <div class="company-listing">
+        <div class="company-short-details" *ngFor="let company of popularCompanies">
+            <mat-card>
+                <mat-card-header>
+                    <div class="header-content">
+                        <img [src]="company.logoUrl" alt="{{company.companyName}} Logo" class="company-logo">
+                        <mat-card-title>{{company.companyName}}</mat-card-title>
+                    </div>
+                </mat-card-header> 
+                <mat-card-content>
+                    <div class="rating-container">
+                        <star-rating direction="ltr" [readOnly]="true" [showHalfStars]="true" 
+                        [rating]="company.totalReviewRating"></star-rating>
+                        <!-- <mat-icon *ngFor="let _ of generateArray(company.totalReviewRating)" color="accent">star</mat-icon> -->
+                        <!-- Display number of ratings -->
+                        <span class="rating-count">  ({{company.reviewsCount}} reviews)</span>
+                        
+                    </div>
+                </mat-card-content>
+                <mat-card-footer>
+                    <a class="url" (click)="onSelectedCompanyDetail(company)">company details</a>
+                    <a class="url" (click)="onSelectedCompanyDetail(company)">open jobs</a>
+                    <a class="url" (click)="onSelectedCompanyDetail(company)">employer</a>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+</div>

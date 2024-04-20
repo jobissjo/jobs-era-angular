@@ -1,0 +1,50 @@
+<mat-card *ngIf="isCompanySelected" class="card">
+  <div class="custom-header">
+    <img class="img" mat-card-image [src]="selectedCompany.logoUrl" alt="Company Logo">
+    <mat-card-header>
+
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ selectedCompany.companyName }}</mat-card-title>
+      <mat-card-subtitle>{{ selectedCompany.location }}</mat-card-subtitle>
+    </mat-card-header>
+  </div>
+
+
+  <mat-card-content>
+    <p>{{ selectedCompany.about }}</p>
+    <p>Industry: {{ selectedCompany.industry }}</p>
+    <p>Company Type: {{ selectedCompany.companyType }}</p>
+    <p>Total Employees: {{ selectedCompany.employeesCount }}</p>
+    <p>Follower Count: {{ selectedCompany.followerCount }}</p>
+    <p>Total Review Rating: {{ selectedCompany.totalReviewRating }}</p>
+    <div *ngFor="let opening of selectedCompany.openings">
+      <h3>Job Openings</h3>
+      <mat-card-title>{{opening.jobTitle}}</mat-card-title>
+      <mat-card-subtitle>{{opening.experience}}</mat-card-subtitle>
+      <mat-card-subtitle>{{opening.salary}}</mat-card-subtitle>
+      <mat-card-subtitle>{{opening.location}}</mat-card-subtitle>
+    </div>
+    <div *ngIf="selectedCompany.HRDetails">
+      <h3>Employer Details</h3>
+      <mat-card-title>{{selectedCompany.HRDetails.name}}</mat-card-title>
+      <mat-card-subtitle>{{selectedCompany.HRDetails.email}}</mat-card-subtitle>
+      <mat-card-subtitle>{{selectedCompany.HRDetails.phoneNumber}}</mat-card-subtitle>
+      <mat-card-subtitle>{{selectedCompany.HRDetails.linkedInPage}}</mat-card-subtitle>
+    </div>
+    <div *ngIf="selectedCompany.reviews.length > 0">
+      <h3 style="display: flex; align-items: center;">Reviews ({{ selectedCompany.reviewsCount }}): <star-rating direction="ltr" [readOnly]="true"
+        [showHalfStars]="true" [rating]="selectedCompany.totalReviewRating"></star-rating></h3>
+      <ul>
+        <li *ngFor="let review of selectedCompany.reviews">
+          <p><strong>{{ review.username }}</strong></p>
+          <p>{{ review.reviewText }}</p>
+          <p style="display: flex; align-items: center;">Rating: <star-rating direction="ltr" [readOnly]="true"
+              [showHalfStars]="true" [rating]="review.reviewScore"></star-rating></p>
+        </li>
+      </ul>
+
+
+
+    </div>
+  </mat-card-content>
+</mat-card>

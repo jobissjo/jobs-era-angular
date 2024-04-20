@@ -1,0 +1,23 @@
+<form [formGroup]="employerForm" (ngSubmit)="onFormSubmit()">
+    <mat-tab-group class="create-employer-container" #tabGroup>
+        <mat-tab label="Personal Information" #personalInfo>
+            <div class="personal-information" >
+                <app-personal-info [personalInformation]="personalInformation"
+                (nextTabEvent)="goToNextTab(personalInfo.textLabel)"></app-personal-info>
+            </div>
+        </mat-tab>
+        <mat-tab label="Company Information" #companyInfo>
+            <div class="company-information">
+                <app-company-info [companyInformation]="companyInformation"
+                (nextPageEmit)="goToNextTab(companyInfo.textLabel)"
+                (prevPageEmit)="goToPrevTab(companyInfo.textLabel)"></app-company-info>    
+            </div>
+        </mat-tab>
+        <mat-tab label="Additional Information" #addInfo>
+            <div class="additional-information">
+                <app-additional-info [additionalInformation]="additionalInformation"
+                (previousEmit)="goToPrevTab(addInfo.textLabel)"></app-additional-info>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</form>

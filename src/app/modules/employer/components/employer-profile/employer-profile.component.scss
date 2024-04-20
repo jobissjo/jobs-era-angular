@@ -1,0 +1,80 @@
+.employer-dashboard {
+  display: flex;
+}
+
+
+.dashboard-options h3 {
+  margin-bottom: 10px;
+}
+
+.dashboard-options ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.dashboard-options ul li {
+  margin-bottom: 10px;
+}
+
+.dashboard-options ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+.dashboard-options {
+  width: 200px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  color: #007bff;
+  .list-item{
+    &:hover{
+      background-color: #a1a1a1;
+      cursor: pointer;
+    }
+  }
+  a{
+    text-decoration: none;
+  }
+}
+
+.employer-profile {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+.employer-profile-card {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-pic {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.user-pic img {
+  width: 100px; 
+  height: 100px; /* Adjust the size as needed */
+  border-radius: 50%; /* to make it round */
+}
+
+.personal-information,
+.company-information,
+.additional-information {
+  margin-bottom: 20px;
+}
+
+.personal-information p,
+.company-information p,
+.additional-information p {
+  margin: 5px 0;
+}
+
+
+.dashboard-options{
+  
+}

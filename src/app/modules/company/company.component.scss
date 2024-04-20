@@ -1,0 +1,25 @@
+.company-container{
+    width: 60vw;
+    margin: auto;
+    h1{
+        text-align: center;
+        color: #3f51b5;
+    }
+}
+.search-container{
+    width: 90%;
+    margin: auto;
+}
+mat-form-field{
+    width: 70%;
+}
+.btn{
+    height:  55px;
+    margin-bottom: 15px;
+    // max-width: 100px;
+}
+
+.card-row {
+    display: flex;
+    align-items: center;
+  }

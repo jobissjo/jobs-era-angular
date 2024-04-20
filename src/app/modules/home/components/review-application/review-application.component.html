@@ -1,0 +1,38 @@
+<div class="job-application-review" *ngIf="jobApplication">
+    <h2>Job Application Review</h2>
+    <mat-divider></mat-divider>
+    <div class="applicant-details">
+        <div class="title-row">
+            <h3>Applicant Details</h3>
+            <button mat-icon-button color="primary" (click)="editApplicantDetails()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+        <p><strong>Name:</strong> {{ jobApplication.name }}</p>
+        <p><strong>Phone Number:</strong> {{ jobApplication.phoneNumber }}</p>
+        <p><strong>Email:</strong> {{ jobApplication.email }}</p>
+        <p><strong>Location:</strong> {{ jobApplication.location }}</p>
+        
+    </div>
+    <mat-divider></mat-divider>
+    <div class="application-answers">
+        <div class="title-row">
+            <h3>Application Answers</h3>
+            <button mat-icon-button color="primary" (click)="editApplicationAnswers()">
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+        <p><strong>Able to Commute:</strong> {{ jobApplication.ableToCommute ? 'Yes' : 'No' }}</p>
+        <p><strong>High Qualification:</strong> {{ jobApplication.highQualification }}</p>
+        <p><strong>Experience:</strong> {{ jobApplication.experience }}</p>
+        <p><strong>Cover Letter:</strong> {{ jobApplication.coverLetter }}</p>
+        <p><strong>Interview Dates:</strong> {{ jobApplication.interviewDates }}</p>
+
+    </div>
+
+    <button mat-button color="primary" (click)="submitApplication()">Submit Application</button>
+</div>
+
+<div *ngIf="!jobApplication" class="spinner-container">
+    <mat-spinner></mat-spinner>
+</div>

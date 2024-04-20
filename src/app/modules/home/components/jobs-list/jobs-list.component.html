@@ -1,0 +1,13 @@
+<!-- job-list.component.html -->
+
+<div class="job-list">
+    <div *ngFor="let job of jobDetails" class="job-card" (click)="onSelectedJob(job)">
+      <h2>{{ job.jobTitle }}</h2>
+      <p>{{ job.company }}</p>
+      <p><b>Salary : </b>{{ job.salary }} yearly</p>
+      <p><strong>Location : </strong>{{ job.location }}</p>
+      <p><strong>Type : </strong>{{ job.jobType }}</p>
+      <a (click)="onSelectedJob(job)">View Details</a>
+    </div>
+  </div>
+  

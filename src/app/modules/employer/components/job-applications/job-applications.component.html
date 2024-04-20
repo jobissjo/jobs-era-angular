@@ -1,0 +1,11 @@
+<div class="job-applications-container">
+    <h1>Job Applications</h1>
+    <div class="job-applications" *ngIf="jobPostings.length">
+        <div class="job-postings-container">
+            <app-jobs class="jobs" [jobPostings]="jobPostings"></app-jobs>
+        </div>
+        <div class="job-applicants-container">
+            <app-job-applicants class="job-applicants"></app-job-applicants>
+        </div>
+    </div>
+</div>

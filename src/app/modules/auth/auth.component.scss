@@ -1,0 +1,42 @@
+.auth-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: whitesmoke;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.auth-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.auth-container p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.auth-container a {
+    display: inline-block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #3498db;
+    color: #3498db;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.auth-container a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 600px) {
+    .auth-container {
+        max-width: 90%;
+    }
+}

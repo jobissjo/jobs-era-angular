@@ -1,0 +1,22 @@
+<div class="job-search-list">
+    <h2>Your searched Results</h2>
+
+    <div *ngFor="let job of jobDetails" class="job-card" (click)="onSelectedJob(job)">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{ job.jobTitle }}</mat-card-title>
+                <mat-card-subtitle>{{ job.company }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p><b>Salary:</b> {{ job.salary }} yearly</p>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <p><strong>Type:</strong> {{ job.jobType }}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div class="no-results" *ngIf="jobDetails.length == 0">
+        <p>No results found</p>
+        <button routerLink="" mat-button>Go to home page</button>
+    </div>
+</div>

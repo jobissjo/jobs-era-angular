@@ -1,0 +1,29 @@
+<mat-toolbar>
+  <span #mainTitle (click)="routeToHome()" (mouseover)="changeCursor()" (mouseout)="resetCursor()">Jobs Era</span>
+  <button mat-button (click)="routeToHome()">Home</button>
+  <button *ngIf="!isEmployerLogin" mat-button (click)="routeToCompany()">Companies</button>
+  <!-- <button mat-button (click)="routeToJobs()">Jobs</button> -->
+  
+  <span class="example-spacer"></span>
+  <button *ngIf="isLogin && !isEmployerLogin" mat-icon-button class="notification-icon" aria-label="Notification-icon"
+   (click)="routeToNotification()" >
+    <mat-icon [matBadge]="notificationCount" matBadgeColor="primary" aria-hidden="false" >notifications</mat-icon>
+  </button>
+  <button *ngIf="!isEmployerLogin" mat-icon-button class="example-icon" aria-label="Employer Icon" (click)="routeToEmployer()">
+    <mat-icon>work</mat-icon>
+  </button>
+  <button *ngIf="!isLogin && !isEmployerLogin" mat-icon-button class="example-icon" aria-label="Auth icon" (click)="routeToAuth()">
+    <mat-icon>person</mat-icon>
+  </button>
+  <button *ngIf="isLogin" mat-icon-button class="example-icon" aria-label="Auth icon" (click)="clickToUser()">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <button *ngIf="isEmployerLogin" mat-icon-button (click)="routeToEmployerProfile()">
+    <mat-icon>assignment_ind</mat-icon>
+  </button>
+  <button *ngIf="isEmployerLogin" mat-icon-button (click)="onClickLogout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+  
+</mat-toolbar>
+

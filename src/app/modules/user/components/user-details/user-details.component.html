@@ -1,0 +1,115 @@
+<h2>User Details</h2>
+<div class="user-details" *ngIf="userDetails; else noDetails">
+    
+
+    <div class="section" id="education">
+        <div class="heading-with-edit-icon">
+            <h3>Education</h3>
+            <button class="icon" mat-icon-button (click)="onEditDetail('education')"><mat-icon
+                    aria-hidden="false">edit</mat-icon></button>
+        </div>
+        <ul>
+            <li *ngFor="let education of userDetails.education">
+                <strong>Level:</strong> {{ education.level }}<br>
+                <strong>Field of Study:</strong> {{ education.fieldOfStudy }}<br>
+                <!-- <strong>Started Date:</strong> {{formateMomentDate(education.startedDate)}} <br> -->
+                <!-- <strong>Ended Date:</strong> {{ education.endedDate | date }}<br> -->
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+
+        <div class="heading-with-edit-icon" id="certifications">
+            <h3>Certifications</h3>
+            <button class="icon" mat-icon-button (click)="onEditDetail('certification')"><mat-icon
+                    aria-hidden="false">edit</mat-icon></button>
+        </div>
+        <ul>
+            <li *ngFor="let certification of userDetails.certifications">
+                <strong>Title:</strong> {{ certification.title }}<br>
+                <strong>Certificate ID:</strong> {{ certification.certificateId }}<br>
+                <strong>Mode:</strong> {{ certification.mode }}<br>
+                <strong>Institution:</strong> {{ certification.institution }}<br>
+                <strong>Start Date:</strong> {{ certification.startDate | date: "MMM - y" }}<br>
+                <strong>End Date:</strong> {{ certification.endDate | date: "MMM - y" }}<br>
+            </li>
+        </ul>
+    </div>
+    <div class="section">
+        <div class="heading-with-edit-icon" id="skills">
+            <h3>Skills</h3>
+            <button class="icon" mat-icon-button (click)="onEditDetail('skills')"><mat-icon
+                    aria-hidden="false">edit</mat-icon></button>
+        </div>
+        <ul>
+            <li *ngFor="let skill of userDetails.skills"><strong>{{skill}}</strong></li>
+        </ul>
+    </div>
+
+    <div class="section">
+
+        <div class="heading-with-edit-icon" id="qualification">
+            <h3>Experience</h3>
+            <button class="icon" mat-icon-button (click)="onEditDetail('experience')"><mat-icon
+                    aria-hidden="false">edit</mat-icon>
+            </button>
+        </div>
+        <ul>
+            <li *ngFor="let experience of userDetails.experience">
+                <strong>Position:</strong> {{ experience.position }}<br>
+                <strong>Company Name:</strong> {{ experience.companyName }}<br>
+                <strong>Start Date:</strong> {{ experience.startDate | date: "MMM - y" }}<br>
+                <strong>End Date:</strong> {{ experience.endDate | date: "MMM - y" }}<br>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+
+        <div class="heading-with-edit-icon">
+            <h3>Known Languages</h3>
+            <button class="icon" mat-icon-button (click)="onEditDetail('language')">
+                <mat-icon aria-hidden="false">edit</mat-icon>
+            </button>
+        </div>
+        <ul>
+            <li *ngFor="let language of userDetails.knownLanguages">
+                <strong>Language:</strong> {{ language.language }}<br>
+                <strong>Level:</strong> {{ language.level }}<br>
+                <strong>Reading:</strong> {{ language.reading ? 'Yes' : 'No' }}<br>
+                <strong>Writing:</strong> {{ language.writing ? 'Yes' : 'No' }}<br>
+                <strong>Speaking:</strong> {{ language.speaking ? 'Yes' : 'No' }}<br>
+            </li>
+        </ul>
+    </div>
+
+    <div class="section">
+
+        <div class="heading-with-edit-icon">
+            <h3>Preferred Locations</h3>
+            <button class="icon" mat-icon-button (click)="onEditDetail('location')">
+                <mat-icon aria-hidden="false">edit</mat-icon>
+            </button>
+        </div>
+        <ul>
+            <li *ngFor="let location of userDetails.preferredLocations">{{ location }}</li>
+        </ul>
+    </div>
+</div>
+
+<ng-template #noDetails >
+    <div class="no-details-container">
+        <mat-card class="no-details">
+            <mat-card-header>
+                <mat-card-title>No Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-card-subtitle>No details found in this page, you can edit the profile</mat-card-subtitle>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-stroked-button color="primary" (click)="gotoEditProfile()">Edit Profile</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</ng-template>

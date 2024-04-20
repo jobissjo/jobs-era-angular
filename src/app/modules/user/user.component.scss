@@ -1,0 +1,30 @@
+.user-profile-container{
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50vw;
+    margin: 10px auto;
+}
+.user-image{
+    width: 100px;
+    height: 100px;
+}
+.profile-container{
+    width: 50vw;
+    margin: 10px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+mat-list{
+    a{
+        text-decoration: none;
+        :hover{
+            cursor: pointer;
+        }
+    }
+    :hover{
+        background-color: rgb(179, 179, 179);
+    }
+}
+
+.user-profile-title{
+    text-align: center;
+}

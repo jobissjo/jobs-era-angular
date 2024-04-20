@@ -1,0 +1,52 @@
+<div class="job-details-conatiner" #detailsContainer>
+  <div class="job-details" *ngIf="selectedJob; else noSelectedJob">
+    <div class="title-row">
+      <h1>{{ selectedJob.jobTitle }}</h1>
+      <div>
+        <button mat-icon-button (click)="onClickSaved(selectedJob, bookmarkBtn)" #bookmarkBtn>
+          <mat-icon aria-label="Edit">bookmark</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onClickBlock(blockBtn)" #blockBtn>
+          <mat-icon aria-label="block">block</mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <p>{{ selectedJob.company }}</p>
+    <p>{{ selectedJob.salary }}</p>
+    <p>{{ selectedJob.location }}</p>
+    <p>{{ selectedJob.jobType }}</p>
+    <p>{{ selectedJob.shift }}</p>
+  
+    <h2>Description:</h2>
+    <ul>
+      <li *ngFor="let description of selectedJob.description">{{ description }}</li>
+    </ul>
+  
+    <h2>Qualifications:</h2>
+    <ul>
+      <li *ngFor="let qualification of selectedJob.qualifications">{{ qualification }}</li>
+    </ul>
+  
+    <h2>Additional Details:</h2>
+    <ul>
+      <li *ngFor="let detail of selectedJob.responsibilities">{{ detail }}</li>
+    </ul>
+    <mat-divider></mat-divider>
+    <div class="job-detail-footer" >
+      <button mat-stroked-button color="primary" (click)="goToJobApplicationPage(selectedJob.id)">
+        Apply Now
+      </button>
+      <button mat-stroked-button >
+        <mat-icon color="warn" mat-icon-button aria-label="Delete">flag</mat-icon>
+        report job
+      </button>
+    </div>
+  </div>
+  
+<ng-template #noSelectedJob>
+  <div class="no-jobs">
+    <p>No Jobs Has been Selected</p>
+  </div>
+</ng-template>
+</div>

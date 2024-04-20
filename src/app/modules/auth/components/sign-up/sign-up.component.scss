@@ -1,0 +1,92 @@
+.signup-container {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 40%;
+    margin: 20px auto;
+}
+
+.signup-container h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form {
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input {
+    width: calc(100% - 16px);
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 40px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.login-link {
+    display: block;
+    margin-top: 15px;
+    color: #3498db;
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.error-msg {
+    font-size: 14px;
+    color: red;
+    margin-top: 5px;
+}
+
+@media screen and (max-width: 1000px) {
+    .signup-container {
+        width: 70%; /* Adjust width for smaller screens */
+    }
+}
+
+
+@media screen and (max-width: 800px) {
+    .signup-container {
+        width: 75%; /* Adjust width for smaller screens */
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    .signup-container {
+        width: 80%; /* Adjust width for smaller screens */
+    }
+}

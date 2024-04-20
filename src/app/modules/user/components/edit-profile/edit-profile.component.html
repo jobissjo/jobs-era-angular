@@ -1,0 +1,380 @@
+<div class="spinner-container">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+<form [formGroup]="userDetail" (ngSubmit)="onClickCreateUserProfile()" *ngIf="!isLoading">
+    <h1 class="title">User Details</h1>
+    <mat-stepper #stepper class="stepper">
+        <mat-step>
+            <ng-template matStepLabel>Personal Information</ng-template>
+            <div class="personal-information-container" formGroupName="personalDetail">
+                <div class="personal-details">
+                    <div class="row">
+                        <mat-form-field>
+                            <mat-label>Name</mat-label>
+                            <input matInput placeholder="Eren Yeager" formControlName="name">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Heading</mat-label>
+                            <input matInput placeholder="Python Developer" formControlName="heading">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                            <input matInput placeholder="John Smith" formControlName="email">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Phone Number</mat-label>
+                            <input matInput placeholder="Python Developer" formControlName="phoneNumber">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field>
+                            <mat-label>Social Media Link</mat-label>
+                            <input matInput placeholder="www.linkedin/@jobito" formControlName="socialMediaLink">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Github Link</mat-label>
+                            <input matInput placeholder="www.github/@jobito" formControlName="githubLink">
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <mat-form-field>
+                            <mat-label>Choose a date</mat-label>
+                            <input placeholder="dob" matInput [matDatepicker]="picker" formControlName="dob">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Gender</mat-label>
+                            <mat-select title="gender" formControlName="gender">
+                                <mat-option value="male">Male </mat-option>
+                                <mat-option value="female">Female</mat-option>
+                                <mat-option value="prefer not to say">Prefer not to say</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+
+                <div class="location-details">
+                    <div class="row">
+                        <mat-form-field>
+                            <mat-label>Country</mat-label>
+                            <input matInput placeholder="India" formControlName="country">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>State</mat-label>
+                            <input matInput placeholder="TamilNadu" formControlName="state">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <mat-form-field>
+                            <mat-label>District</mat-label>
+                            <input matInput placeholder="Kanniyakumari" formControlName="district">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <mat-label>Postal Code</mat-label>
+                            <input matInput placeholder="629***" formControlName="postalCode">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" mat-stroked-button color="accent" matStepperNext>Next</button>
+                </div>
+            </div>
+
+        </mat-step>
+        <mat-step class="step">
+            <ng-template matStepLabel>Education & Certification</ng-template>
+            <div class="education-details-container" id="education-section">
+                <div class="education-details" formArrayName="education">
+                    <h2>Education</h2>
+                    <ng-container *ngFor="let control of educationArray.controls; let i=index">
+                        <div [formGroupName]="i" [class]="'education-detail-'+i">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label>Level</mat-label>
+                                    <input matInput placeholder="+12" formControlName="level">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Field of Study</mat-label>
+                                    <input matInput placeholder="Computer Science" formControlName="fieldOfStudy">
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                
+                                <mat-form-field>
+                                    <mat-label>Started Date</mat-label>
+                                    <input placeholder="date" matInput [matDatepicker]="esDp"
+                                        formControlName="startedDate">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="esDp"></mat-datepicker-toggle>
+                                    <mat-datepicker #esDp></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>End Date</mat-label>
+                                    <input placeholder="date" matInput [matDatepicker]="edDp"
+                                        formControlName="endedDate">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="edDp"></mat-datepicker-toggle>
+                                    <mat-datepicker #edDp></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="delete-btn-conatiner">
+                                <button (click)="deleteFormArrayElements(educationArray,i)" type="button"
+                                    mat-stroked-button color="warn"> Delete</button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div>
+                        <button type="button" mat-stroked-button (click)="addEducation()" color="primary">
+                            Add Education
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <div class="certification-details" formArrayName="certifications" id="certification-section">
+                    <h2>Certifications</h2>
+                    <ng-container *ngFor="let control of certificationArray.controls; let i=index">
+                        <div [formGroupName]="i" [class]="'certification-detail-'+i">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label>Title</mat-label>
+                                    <input matInput placeholder="Python Developer" formControlName="title">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Certificate Id</mat-label>
+                                    <input matInput placeholder="XXXXXX24" formControlName="certificateId">
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label>Institution</mat-label>
+                                    <input matInput placeholder="Jo4Tech" formControlName="institution">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Mode of Study</mat-label>
+                                    <input matInput placeholder="Offline" formControlName="mode">
+                                </mat-form-field>
+                            </div>
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label>Started Date</mat-label>
+                                    <input placeholder="14/08/2023" matInput [matDatepicker]="sdp"
+                                        formControlName="startDate">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="sdp"></mat-datepicker-toggle>
+                                    <mat-datepicker #sdp></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>End Date</mat-label>
+                                    <input placeholder="date" matInput [matDatepicker]="dp" 
+                                    formControlName="endDate">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
+                                    <mat-datepicker #dp></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="delete-btn-conatiner">
+                                <button (click)="deleteFormArrayElements(certificationArray,i)" type="button"
+                                    mat-stroked-button color="warn"> Delete</button>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div>
+                        <button type="button" mat-stroked-button (click)="addCertifications()" color="primary">
+                            Add Certification
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div>
+                    <button type="button" mat-stroked-button matStepperPrevious color="primary">Back</button>
+                    <button type="button" mat-stroked-button color="accent" matStepperNext>Next</button>
+                </div>
+            </div>
+        </mat-step>
+        <mat-step label="Skills & Experiences">
+            <div class="qualification-details-container" id="qualification-section">
+
+
+                <!-- Skills Array Container -->
+                <div class="skills" formArrayName="skills">
+                    <h2>Skills</h2>
+                    <div>
+                        <ng-container *ngFor="let control of skillsArray.controls; let i=index">
+                            <mat-form-field>
+                                <mat-label>Skills {{i+1}}</mat-label>
+                                <input matInput placeholder="Django" [formControlName]="i">
+                            </mat-form-field>
+                            <button type="button" mat-flat-button color="warn"
+                                (click)="deleteFormArrayElements(skillsArray,i)">Delete</button>
+                        </ng-container>
+                        <div>
+                            <button type="button" mat-flat-button (click)="addSkills()" color="primary">Add
+                                Skills</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="experience-details" formArrayName="experience" id="experience-section">
+                    <h2>Experiences</h2>
+                    <ng-container *ngFor="let control of experienceArray.controls; let i=index">
+                        <div [formGroupName]="i" [class]="'experience-detail-'+i">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label>Title</mat-label>
+                                    <input matInput placeholder="Python Developer" formControlName="position">
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Company Name</mat-label>
+                                    <input matInput placeholder="Jo4Tech" formControlName="companyName">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="row">
+
+                                <mat-form-field>
+                                    <mat-label>Start Date</mat-label>
+                                    <input placeholder="15/02/2023" matInput [matDatepicker]="xsDp"
+                                        formControlName="startDate">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="xsDp"></mat-datepicker-toggle>
+                                    <mat-datepicker #xsDp></mat-datepicker>
+                                </mat-form-field>
+
+                                <mat-form-field>
+                                    <mat-label>Ended Date</mat-label>
+                                    <input placeholder="15/02/2023" matInput [matDatepicker]="xeDp"
+                                    formControlName="endDate">
+                                    <mat-hint>MM/DD/YYYY</mat-hint>
+                                    <mat-datepicker-toggle matIconSuffix [for]="xeDp"></mat-datepicker-toggle>
+                                    <mat-datepicker #xeDp></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div class="delete-btn-conatiner">
+                                <button (click)="deleteFormArrayElements(experienceArray,i)" type="button"
+                                    mat-stroked-button color="warn"> Delete</button>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div>
+                        <button type="button" mat-stroked-button (click)="addExperience()" color="primary">
+                            Add Experience
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div formArrayName="knownLanguages" id="language-section">
+                    <h2>Known Languages</h2>
+                    <ng-container *ngFor="let control of knownLanguageArray.controls; let i=index">
+                        <div [formGroupName]="i" [class]="'languages-detail-'+i">
+                            <div class="row">
+                                <mat-form-field>
+                                    <mat-label>Language</mat-label>
+                                    <input matInput placeholder="English" formControlName="language">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label>Level</mat-label>
+                                    <input matInput placeholder="Beginner" formControlName="level">
+                                </mat-form-field>
+                            </div>
+                            <div class="checkbox-container">
+                                <h4>Select knowledgeable Area</h4>
+                                <section class="checkboxes">
+                                    <mat-checkbox formControlName="reading">Reading</mat-checkbox>
+                                    <mat-checkbox formControlName="writing">Writing</mat-checkbox>
+                                    <mat-checkbox formControlName="speaking">Speaking</mat-checkbox>
+                                </section>
+                            </div>
+                            <div class="delete-btn-conatiner">
+                                <button (click)="deleteFormArrayElements(knownLanguageArray, i)" type="button"
+                                    mat-stroked-button color="warn"> Delete</button>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div>
+                        <button type="button" mat-stroked-button (click)="addLanguage()" color="primary">
+                            Add Language
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="button" mat-button matStepperPrevious color="primary">Back</button>
+                <button type="button" mat-button matStepperNext color="accent">Next</button>
+
+            </div>
+
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Other Preference</ng-template>
+            <div class="other-preference-container">
+                <div class="job-preference">
+                    <div formGroupName="otherPreference">
+                        <label for="">Job Type</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="jobType">
+                            <mat-radio-button value="1">Full-time</mat-radio-button>
+                            <mat-radio-button value="2">Part-time</mat-radio-button>
+                            <mat-radio-button value="3">Work From Home</mat-radio-button>
+                            <mat-radio-button value="4">Hybrid</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="skills" formArrayName="preferredLocations">
+                        <h2>Preferred Location</h2>
+                        <div>
+                            <ng-container *ngFor="let control of preferredLocationArray.controls; let i=index">
+                                <mat-form-field class="form-field">
+                                    <mat-label>Locations {{i+1}}</mat-label>
+                                    <input matInput placeholder="Chennai" [formControlName]="i">
+                                </mat-form-field>
+                                <button type="button" mat-flat-button color="warn"
+                                    (click)="deleteFormArrayElements(preferredLocationArray, i)">Delete</button>
+                            </ng-container>
+                            <div>
+                                <button type="button" mat-flat-button (click)="addPreferredLocations()"
+                                    color="primary">Add
+                                    Location</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+
+                    </div>
+                </div>
+                <!-- <div class="profile-photo">
+                    <label for="">Profile Photo </label>
+                    <input type="file" class="file-upload" placeholder="whatever">
+                </div>
+                <div class="resume-container">
+                    <label for="">Resume </label>
+                    <input type="file" class="file-upload" placeholder="whatever">
+                </div> -->
+
+                <p>Please verify you entered all the details and Submit</p>
+                <div>
+                    <button type="button" color="primary" mat-button matStepperPrevious>Back</button>
+                    <!-- <button type="button" color="warn" mat-button (click)="stepper.reset()">Reset</button> -->
+                    <button type="submit" color="warn" mat-button>Submit</button>
+                </div>
+            </div>
+
+        </mat-step>
+    </mat-stepper>
+</form>

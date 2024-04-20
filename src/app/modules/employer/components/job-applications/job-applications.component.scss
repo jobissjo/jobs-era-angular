@@ -1,0 +1,25 @@
+h1{
+    text-align: center;
+}
+
+.job-applications{
+    display: flex;
+}
+.job-applications{
+    width: 95vw;
+}
+.jobs,.job-applicants {
+    width: 100%;
+}
+
+.job-postings-container, .job-applicants-container {
+    width: 47%;
+    height: 80vh; 
+    overflow-y: auto;
+}
+
+.job-applications {
+    display: flex;
+    justify-content: space-between;
+}
+

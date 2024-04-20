@@ -1,0 +1,70 @@
+.employer-home-container {
+    margin: 100px auto;
+    max-width: 400px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden; /* Ensures container's shadow doesn't overflow */
+}
+
+.employer-container {
+    padding: 25px;
+    text-align: center;
+}
+
+.employer-container h1 {
+    color: #4133ff;
+    margin-bottom: 20px;
+}
+
+.employer-container p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.employer-container a {
+    display: inline-block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #4133ff;
+    color: #4133ff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.employer-container a:hover {
+    background-color: #4133ff;
+    color: #fff;
+}
+
+.user-route {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.go-to-user {
+    text-decoration: none;
+    color: #007bff;
+    margin-bottom: 10px; /* Adjust margin between text and button */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #007bff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.go-to-user:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+/* Responsive Styling */
+@media screen and (max-width: 600px) {
+    .employer-home-container {
+        max-width: 90%;
+    }
+}
+

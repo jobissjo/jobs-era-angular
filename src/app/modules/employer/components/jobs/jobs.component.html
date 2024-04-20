@@ -1,0 +1,31 @@
+<div class="job-postings">
+    <div class="row" *ngIf="jobPostings.length">
+        <div *ngFor="let job of jobPostings" class="job-details" (click)="onSelectJobPosting(job.id)">
+            <div class="title-row">
+                <h2>{{ job.jobTitle }}</h2>
+            </div>
+            <div class="details">
+                <p><strong>Company:</strong> {{ job.company }}</p>
+                <p><strong>Experience:</strong> {{ job.experience }}</p>
+                <p><strong>Salary:</strong> {{ job.salary }}</p>
+                <p><strong>Location:</strong> {{ job.location }}</p>
+                <p><strong>Job Type:</strong> {{ job.jobType }}</p>
+                <p><strong>Shift:</strong> {{ job.shift }}</p>
+                <p><strong>Description:</strong> {{ job.description }}</p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="no-job-openings" *ngIf="jobPostings.length === 0">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>No Jobs found.</mat-card-title>
+            </mat-card-header>
+            <mat-card-actions>
+                <button mat-stroked-button (click)="routeToCreateJob()">Create Job</button>
+            </mat-card-actions>
+        </mat-card>
+       
+    </div>
+</div>

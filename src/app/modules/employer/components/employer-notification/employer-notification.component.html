@@ -1,0 +1,67 @@
+<div class="notification-card">
+    <h1>Notifications</h1>
+    <ng-container *ngIf="notifications.length">
+        <mat-card *ngFor="let notification of notifications" class="mat-card">
+            <mat-card-header class="header-details">
+
+                <mat-card-subtitle class="subtitle">
+                    Message  days ago
+                </mat-card-subtitle>
+                <!-- {{daysAgoFn(notification.createdDate)}} -->
+                <button mat-icon-button color="warn" aria-label="delete icon">
+                    <!-- (click)="deleteNotification(notification)" -->
+                    <mat-icon>close</mat-icon>
+                </button>
+
+            </mat-card-header>
+            <mat-divider></mat-divider>
+
+            <mat-card-content>
+                <mat-card-title>{{notification.title}}</mat-card-title>
+                <p>{{notification.message}}</p>
+                <mat-card-subtitle class="subtitle">{{notification.position}}</mat-card-subtitle>
+
+                <div class="btn-container">
+                    <button type="button" mat-stroked-button color="primary"
+                        *ngIf="notification.notificationType == 'job-invitation';else msgEmployerBtn">
+                        View Jobs <mat-icon>arrow_forward</mat-icon>
+                    </button>
+
+                    <ng-template #msgEmployerBtn>
+                        <button mat-stroked-button color="primary" type="button">
+                            Send Message <mat-icon>arrow_forward</mat-icon>
+                        </button>
+                    </ng-template>
+                </div>
+
+            </mat-card-content>
+            <mat-divider></mat-divider>
+            <mat-card-footer class="footer" *ngIf="!usefulSelected.includes(notification.id)">
+                <!-- <mat-card-subtitle class="subtitle">Is this notification useful?</mat-card-subtitle> -->
+                <!-- <p class="subtitle">Is this notification useful?</p> -->
+                <mat-card-actions>
+                    <mat-card-subtitle class="subtitle">Is this notification useful?</mat-card-subtitle>
+
+                </mat-card-actions>
+                <mat-card-actions>
+                    <!-- <button mat-stroked-button color="primary"
+                        (click)="openSnackBar('Thanks for your kind feedback', 'ok', notification)">Yes</button>
+                    <button mat-stroked-button color="warn"
+                        (click)="openSnackBar('Thanks for your feedback, we will improve our notifications', 'undo',notification)">
+                        No</button> -->
+                </mat-card-actions>
+            </mat-card-footer>
+
+
+        </mat-card>
+    </ng-container>
+    <mat-card *ngIf="!notifications.length">
+        <mat-card-header>
+            <mat-card-title>No Notifications</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card-subtitle>Currently no notifications are available</mat-card-subtitle>
+        </mat-card-content>
+    </mat-card>
+
+</div>

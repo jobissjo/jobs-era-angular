@@ -1,0 +1,38 @@
+<div class="signup-container">
+    
+    <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+        <h2>Sign Up</h2>
+        <div>
+            <label for="username">Username</label>
+            <input type="text" id="username" formControlName="username" placeholder="username">
+            <span class="error-msg" *ngIf="checkControlInValid('username')">
+            enter the correct username</span>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" formControlName="email" placeholder="abc12@gmail.com">
+            <span class="error-msg" *ngIf="checkControlInValid('email')">
+            entered email formate is not correct</span>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input type="password" id="password" formControlName="password" placeholder="********">
+            <span class="error-msg" *ngIf="checkControlInValid('password')">
+            entered password must be 8 letters</span>
+        </div>
+
+        <div>
+            <label for="password">Confirm Password</label>
+            <input type="password" id="cpassword" formControlName="cPassword" placeholder="********">
+            <span class="error-msg" *ngIf="checkControlInValid('cPassword') || !checkSamePassword()">
+            password not matched</span>
+        </div>
+
+        <button type="submit">Sign Up</button>
+
+        <p>Already have an account? <a [routerLink]="'/auth/sign-in'" class="login-link">SignIn</a></p>
+    </form>
+</div>

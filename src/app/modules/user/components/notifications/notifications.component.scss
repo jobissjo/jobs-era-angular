@@ -1,0 +1,36 @@
+.notification-card{
+    width: 50vw;
+    margin: auto;
+}
+h1{
+    text-align: center;
+}
+.mat-card{
+    margin-bottom: 10px;
+}
+.header-details{
+    display: flex;
+    justify-content: space-between;
+}
+.subtitle{
+    font-size: 16px;
+}
+.btn-container{
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+.footer{
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 800px) {
+    .notification-card {
+        width: 70vw;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .notification-card {
+        width: 60vw;
+    }
+}

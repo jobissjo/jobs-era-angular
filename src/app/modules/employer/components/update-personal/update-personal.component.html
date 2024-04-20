@@ -1,0 +1,51 @@
+<div [formGroup]="personalInformation" class="personal-information-form form">
+    <h2>Personal Details </h2>
+    <div class="form-control-row">
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="Tobi" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Jo" formControlName="lastName">
+        </mat-form-field>
+    </div>
+    <div class="form-control-row">
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="abc123@gmail.com" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="jobito" formControlName="username">
+        </mat-form-field>
+    </div>
+    <div class="form-control-row">
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder="+91 1234567890" formControlName="phoneNumber">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Social Media Link</mat-label>
+            <input matInput placeholder="Social Media Link" formControlName="socialMediaLink">
+        </mat-form-field>
+    </div>
+    <div  class="form-control-row">
+        <mat-form-field>
+            <mat-label>Position</mat-label>
+            <input matInput placeholder="Hiring Manager" formControlName="position" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option value="male">Male</mat-option>
+                <mat-option value="female">Female</mat-option>
+                <mat-option value="prefer not to say">Prefer not to say</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="form-button-controls">
+        <button type="button" mat-stroked-button color="warn">Back</button>
+        <button type="button" mat-stroked-button (click)="nextTab()" color="primary">Next Page</button>
+    </div>
+</div>

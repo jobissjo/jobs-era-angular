@@ -1,0 +1,17 @@
+<div class="overlay" *ngIf="selectedUpdateJobStatus">
+    <div class="popup">
+        <h2>Update your application Status</h2>
+        <hr>
+        <a class="close" (click)="onCloseDetail()">&times;</a>
+        <div class="content">
+            <section class="container">
+                <mat-list role="list">
+                    <!-- ARIA (Accessible Rich Internet Applications) role and its associated children in your HTML code. ARIA roles help improve the accessibility of web content for users with disabilities. -->
+                    <mat-list-item *ngFor="let status of applicationStatus" role="listitem" class="list-item" (click)="onUpdatedStatus(status.status)">
+                        <mat-icon aria-hidden="false" [color]="status.color">{{status.icon}}</mat-icon> {{status.title}}
+                    </mat-list-item>
+                </mat-list>
+            </section>
+        </div>
+    </div>
+</div>

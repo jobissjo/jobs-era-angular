@@ -1,0 +1,74 @@
+<div [formGroup]="companyInformation" class="form">
+    <div class="form-control-row">
+        <mat-form-field>
+            <mat-label>Company Name</mat-label>
+            <input matInput placeholder="Jo Tech Pvt Ltd" formControlName="companyName" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Industry</mat-label>
+            <input matInput placeholder="Industry" formControlName="industry" required>
+        </mat-form-field>
+    </div>
+    <div class="form-control-row">
+        <mat-form-field>
+            <mat-label>Company Size</mat-label>
+            <input matInput placeholder="10-50" formControlName="companySize" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Business Type</mat-label>
+            <input matInput placeholder="Business Type" formControlName="businessType" required>
+        </mat-form-field>
+    </div>
+    <div class="form-control-row">
+        <mat-form-field>
+            <mat-label>Phone Number</mat-label>
+            <input matInput placeholder="+91 1234567890" formControlName="companyPhoneNumber" required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Website Link</mat-label>
+            <input matInput placeholder="Company Website Link" formControlName="companyWebsite">
+        </mat-form-field>
+    </div>
+    <div [formGroup]="address">
+        <div class="form-control-row">
+            <mat-form-field>
+                <mat-label>Street</mat-label>
+                <input matInput placeholder="Street" formControlName="street" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>City</mat-label>
+                <input matInput placeholder="City" formControlName="city" required>
+            </mat-form-field>
+        </div>
+        <div class="form-control-row">
+            <mat-form-field>
+                <mat-label>Landmark</mat-label>
+                <input matInput placeholder="Landmark" formControlName="landmark" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>State</mat-label>
+                <input matInput placeholder="Tamil Nadu" formControlName="state" required>
+            </mat-form-field>
+        </div>
+        <div class="form-control-row">
+            <mat-form-field>
+                <mat-label>Country</mat-label>
+                <input matInput placeholder="Country" formControlName="country" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Postal Code</mat-label>
+                <input matInput placeholder="Postal Code" formControlName="postalCode" required>
+            </mat-form-field>
+        </div>
+    </div>
+    <div>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="whatever" formControlName="desc"></textarea>
+        </mat-form-field>
+    </div>
+    <div class="form-button-controls">
+        <button mat-stroked-button type="button" (click)="clickGoToPrev()" color="accent">Previous Page</button>
+        <button mat-stroked-button type="button" (click)="clickGoToNext()" color="primary">Next Page</button>
+    </div>
+</div>

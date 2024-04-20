@@ -1,0 +1,29 @@
+.create-employer-container {
+    background-color: #6fc2fd;
+    padding: 20px; /* Add padding for better spacing */
+}
+
+.mat-tab-group {
+    background-color: transparent; /* Set the background color of the tab group to transparent */
+}
+
+.mat-tab-body-wrapper {
+    display: flex;
+    justify-content: center; /* Center the tab content horizontally */
+}
+
+.mat-tab-body {
+    width: 100%;
+}
+
+/* Adjust the background color of individual tabs */
+.mat-tab-label {
+    background-color: #6fc2fd;
+}
+
+/* Ensure that the tab content has some space around it */
+.personal-information, .company-information, .additional-information {
+    background-color: rgb(207, 207, 207) !important;
+    padding: 20px;
+    border-radius: 8px; /* Optional: Add rounded corners for a better appearance */
+}

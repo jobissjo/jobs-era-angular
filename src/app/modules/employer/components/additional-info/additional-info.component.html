@@ -1,0 +1,17 @@
+<div [formGroup]="additionalInformation" class="form">
+    <div >
+        <mat-form-field>
+            <mat-label>How you Know About Us</mat-label>
+            <mat-select formControlName="hearAboutUs">
+                <mat-option [value]="sm.value" *ngFor="let sm of platforms" [value]="sm.value">
+                    {{sm.viewValue}}
+                </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="agreedToTerms">agree our terms & conditions</mat-checkbox>
+
+    </div>
+    <button (click)="goToPrev()" mat-stroked-button color="accent">Previous Page</button>
+    <button type="submit" mat-stroked-button color="primary">Submit </button>
+</div>

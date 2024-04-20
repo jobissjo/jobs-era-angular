@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="detail-card" *ngFor="let applicant of jobApplicants">
+      <h1>{{ applicant.name | titlecase }}</h1>
+      <p><strong>Email:</strong> {{ applicant.email }}</p>
+      <p><strong>Phone Number:</strong> {{ applicant.phoneNumber }}</p>
+      <p><strong>Location:</strong> {{ applicant.location || 'Not Specified' }}</p>
+      <p><strong>Able to Commute:</strong> {{ applicant.ableToCommute ? 'Yes' : 'No' }}</p>
+      <p><strong>High Qualification:</strong> {{ applicant.highQualification }}</p>
+      <p><strong>Experience:</strong> {{ applicant.experience }}</p>
+      <p><strong>Cover Letter:</strong> {{ applicant.coverLetter }}</p>
+      <p><strong>Interview Dates:</strong> {{ applicant.interviewDates }}</p>
+      <p><strong>Applie On:</strong> {{ applicant.appliedOn }}</p>
+      <button mat-button (click)="getResumeByResumePath(applicant.resumePath)">Download Resume</button>
+    </div>
+    <div *ngIf="!jobApplicants.length" class="no-detail-card">
+        <h3>No application for this jobs</h3>
+    </div>
+  </div>
+  

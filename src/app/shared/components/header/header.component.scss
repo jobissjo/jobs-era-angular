@@ -1,0 +1,18 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.mat-toolbar{
+  background-color: #5FBDFF;
+}
+.main-name{
+  padding: auto 10px;
+}
+.hand-pointer {
+  cursor: pointer;
+}
+
+.demo-section + .demo-section {
+  margin-top: 16px;
+}
+
