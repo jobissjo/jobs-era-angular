@@ -15,18 +15,14 @@ import { Role } from '../Models/Enums';
 export class AuthService {
 
   constructor(private http: HttpClient, private router: Router, private handleMsgService: HandleMessageService) { }
-  private apiKey: string = 'AIzaSyAdkex8qVnKhQBbgl_ehfuOpOCzspBoDrU';
 
   userFA: ResponseUserModel = { id: '', username: '', email: '', role: '', active: false };
   userSubFA$ = new BehaviorSubject<ResponseUserModel>(this.userFA);
 
 
-  user = new UserFireResponse('dummy@mail.com', '32423', '1234', new Date());
-  userSub$ = new BehaviorSubject<UserFireResponse>(this.user);
 
 
   loggedInSub$ = new BehaviorSubject<boolean>(false);
-  timeFunctionId: any;
   currentUserIdSub = new BehaviorSubject<string>('');
 
   changePassword(oldPassword: string, new_password: string) {
@@ -63,31 +59,6 @@ export class AuthService {
 
   }
 
-
-
-
-
-
-  private handleError(err: any) {
-    let errorMsg = "The unknown error occurred";
-
-    if (!err.error?.error) {
-      return throwError(() => errorMsg)
-    }
-
-    switch (err.error.error.message) {
-      case "EMAIL_EXISTS":
-        errorMsg = 'The email already exists'
-        break;
-      case "OPERATION_NOT_ALLOWED":
-        errorMsg = "This operation is not allowed"
-        break;
-      case "INVALID_LOGIN_CREDENTIALS":
-        errorMsg = "This email or password is not correct"
-        break;
-    }
-    return throwError(() => errorMsg);
-  }
 
   isAuthenticated() {
     return this.userSubFA$.getValue().role == 'user';
@@ -151,19 +122,6 @@ export class AuthService {
 
 
     return this.http.post<ResponseUserModel>(`${environment.fastApiMainUrl}/users`, data)
-    // .subscribe({
-    //   next: res => {
-    //     console.log(res);
-    //     this.handleMsgService.successMessage("User Created Successfully", "User Created");
-    //     if (res.role == "user"){
-    //       this.router.navigate(['auth', 'sign-in']);
-    //     }
-    //     else{
-    //       this.currentUserIdSub.next(res.id)
-    //     }
-
-    //   }
-    // })
   }
 
   autoLoginInFA() {
@@ -224,9 +182,6 @@ export class AuthService {
       this.getCurrentUser(myObj)
     }
   }
-
-
-
 }
 
 
