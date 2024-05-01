@@ -1,7 +1,16 @@
-# JobSera
+# Jobs Era Frontend (Angular) --
 
-This project is full folder is found at: https://github.com/jobissjo/job-sera
+Job portal website -> Angular, Angular Material, Rxjx Library <br />
 
-## Angular Code
+# How to Run
 
-This is a separate angular code
+## clone the repository <br />
+```git clone https://github.com/jobissjo/Ecommerce-angular-project```<br /><br />
+## change the directory <br />
+```cd Ecommerce-angular-project```<br /><br />
+## Run ng init for install the dependencies <br />
+```ng init```<br /><br />
+## Run ng server to run angular app in locally<br />
+```ng serve```
+
+
