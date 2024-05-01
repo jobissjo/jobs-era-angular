@@ -5,7 +5,7 @@ Job portal website -> Angular, Angular Material, Rxjx Library <br />
 # How to Run
 
 ## clone the repository <br />
-```git clone https://github.com/jobissjo/Ecommerce-angular-project```<br /><br />
+```git clone https://github.com/jobissjo/jobs-era-angular/```<br /><br />
 ## change the directory <br />
 ```cd Ecommerce-angular-project```<br /><br />
 ## Run ng init for install the dependencies <br />
