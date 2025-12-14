@@ -1,17 +1,23 @@
 <div [formGroup]="additionalInformation" class="form">
-    <div >
-        <mat-form-field>
-            <mat-label>How you Know About Us</mat-label>
+    <div class="form-content">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>How did you hear about us?</mat-label>
             <mat-select formControlName="hearAboutUs">
-                <mat-option [value]="sm.value" *ngFor="let sm of platforms" [value]="sm.value">
+                <mat-option *ngFor="let sm of platforms" [value]="sm.value">
                     {{sm.viewValue}}
                 </mat-option>
-
             </mat-select>
         </mat-form-field>
-        <mat-checkbox formControlName="agreedToTerms">agree our terms & conditions</mat-checkbox>
 
+        <div class="checkbox-wrapper">
+            <mat-checkbox formControlName="agreedToTerms" color="primary">
+                I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+            </mat-checkbox>
+        </div>
     </div>
-    <button (click)="goToPrev()" mat-stroked-button color="accent">Previous Page</button>
-    <button type="submit" mat-stroked-button color="primary">Submit </button>
+
+    <div class="form-button-controls">
+        <button type="button" (click)="goToPrev()" mat-stroked-button color="accent">Back</button>
+        <button type="submit" mat-flat-button color="primary">Create Account</button>
+    </div>
 </div>

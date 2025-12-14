@@ -1,29 +1,91 @@
-.create-employer-container {
-    background-color: #6fc2fd;
-    padding: 20px; /* Add padding for better spacing */
-}
-
-.mat-tab-group {
-    background-color: transparent; /* Set the background color of the tab group to transparent */
-}
-
-.mat-tab-body-wrapper {
+.registration-wrapper {
+    min-height: 100vh;
     display: flex;
-    justify-content: center; /* Center the tab content horizontally */
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0fdf4 0%, #eef2ff 100%);
+    padding: 2rem;
 }
 
-.mat-tab-body {
+.registration-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
     width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
 }
 
-/* Adjust the background color of individual tabs */
-.mat-tab-label {
-    background-color: #6fc2fd;
+.card-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 3rem 2rem;
+    text-align: center;
+    color: white;
+
+    h1 {
+        margin: 0 0 1rem 0;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 1.1rem;
+    }
 }
 
-/* Ensure that the tab content has some space around it */
-.personal-information, .company-information, .additional-information {
-    background-color: rgb(207, 207, 207) !important;
-    padding: 20px;
-    border-radius: 8px; /* Optional: Add rounded corners for a better appearance */
+.tab-content {
+    /* Ensure no background color here */
+    background: transparent;
+    padding: 2rem;
+    min-height: 400px;
+}
+
+/* Custom Mat Tab Styling */
+::ng-deep .custom-tabs {
+    .mat-tab-header {
+        border-bottom: 1px solid var(--border-color);
+        background-color: white;
+        /* Changed from light gray to white */
+    }
+
+    .mat-tab-label {
+        height: 60px;
+        opacity: 1;
+        color: var(--text-muted);
+        font-weight: 500;
+
+        &.mat-tab-label-active {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+    }
+
+    .mat-ink-bar {
+        background-color: var(--primary-color) !important;
+        height: 3px !important;
+    }
+
+    /* Remove any default background from tab body content */
+    .mat-tab-body-content {
+        background: transparent !important;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .registration-wrapper {
+        padding: 1rem;
+    }
+
+    .card-header {
+        padding: 2rem 1rem;
+    }
+
+    .tab-content {
+        padding: 1rem;
+        padding-top: 2rem;
+    }
 }

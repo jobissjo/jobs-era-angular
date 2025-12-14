@@ -1,57 +1,58 @@
-/* Apply basic styling to the form container */
-.personal-information-form {
-    max-width: 600px;
+.form-container {
+    max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9; /* Add background color */
+    padding: 1rem;
 }
 
-/* Style form control rows */
-.form-control-row {
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 2rem;
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to next line */
-    margin-bottom: 15px;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+        content: '';
+        display: block;
+        width: 4px;
+        height: 24px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+    }
 }
 
-/* Style form fields */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 0.5rem;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+}
+
 mat-form-field {
-    width: calc(50% - 10px); /* Adjust the width as needed and consider margins */
+    width: 100%;
 }
 
-/* Ensure proper alignment for the last row */
-.form-control-row:last-child mat-form-field {
-    width: 100%; /* Set full width for the last row */
-}
-
-/* Style buttons and button controls */
-.form-button-controls {
-    margin-top: 20px;
+.form-actions {
     display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+
+    button {
+        height: 48px;
+        padding: 0 1.5rem;
+    }
 }
 
-/* Add spacing between buttons */
-.form-button-controls button {
-    margin-left: 10px; /* Adjust spacing between buttons */
+.text-button {
+    color: var(--text-muted);
 }
-
-/* Optional: Style the form field labels */
-.mat-form-field-label {
-    color: #333; /* Change color as needed */
-}
-
-/* Optional: Style the form field outline */
-.mat-form-field-outline {
-    border-color: #2196F3; /* Change color as needed */
-}
-
-/* Optional: Style the button colors */
-button {
-    min-width: 100px;
-    border-radius: 4px; /* Add border radius for consistency */
-}
-
-
-

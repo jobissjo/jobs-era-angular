@@ -1,0 +1,49 @@
+.form {
+    padding: 1rem 0;
+    max-width: 800px;
+    /* Increased from 600px to match other tabs */
+    margin: 0 auto;
+}
+
+.form-content {
+    background-color: transparent;
+    padding: 1rem 0;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.checkbox-wrapper {
+    margin: 1.5rem 0 2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+
+    a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-button-controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+button {
+    height: 48px;
+    padding: 0 2rem;
+    font-size: 1rem;
+}

@@ -1,23 +1,32 @@
-<form [formGroup]="employerForm" (ngSubmit)="onFormSubmit()">
-    <mat-tab-group class="create-employer-container" #tabGroup>
-        <mat-tab label="Personal Information" #personalInfo>
-            <div class="personal-information" >
-                <app-personal-info [personalInformation]="personalInformation"
-                (nextTabEvent)="goToNextTab(personalInfo.textLabel)"></app-personal-info>
-            </div>
-        </mat-tab>
-        <mat-tab label="Company Information" #companyInfo>
-            <div class="company-information">
-                <app-company-info [companyInformation]="companyInformation"
-                (nextPageEmit)="goToNextTab(companyInfo.textLabel)"
-                (prevPageEmit)="goToPrevTab(companyInfo.textLabel)"></app-company-info>    
-            </div>
-        </mat-tab>
-        <mat-tab label="Additional Information" #addInfo>
-            <div class="additional-information">
-                <app-additional-info [additionalInformation]="additionalInformation"
-                (previousEmit)="goToPrevTab(addInfo.textLabel)"></app-additional-info>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-</form>
+<div class="registration-wrapper">
+    <div class="registration-card">
+        <div class="card-header">
+            <h1>Create Employer Account</h1>
+            <p>Join thousands of companies hiring top talent</p>
+        </div>
+
+        <form [formGroup]="employerForm" (ngSubmit)="onFormSubmit()">
+            <mat-tab-group class="custom-tabs" #tabGroup mat-align-tabs="center" animationDuration="0ms">
+                <mat-tab label="1. Personal Info" #personalInfo>
+                    <div class="tab-content">
+                        <app-personal-info [personalInformation]="personalInformation"
+                            (nextTabEvent)="goToNextTab(personalInfo.textLabel)"></app-personal-info>
+                    </div>
+                </mat-tab>
+                <mat-tab label="2. Company Info" #companyInfo>
+                    <div class="tab-content">
+                        <app-company-info [companyInformation]="companyInformation"
+                            (nextPageEmit)="goToNextTab(companyInfo.textLabel)"
+                            (prevPageEmit)="goToPrevTab(companyInfo.textLabel)"></app-company-info>
+                    </div>
+                </mat-tab>
+                <mat-tab label="3. Additional Details" #addInfo>
+                    <div class="tab-content">
+                        <app-additional-info [additionalInformation]="additionalInformation"
+                            (previousEmit)="goToPrevTab(addInfo.textLabel)"></app-additional-info>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </form>
+    </div>
+</div>

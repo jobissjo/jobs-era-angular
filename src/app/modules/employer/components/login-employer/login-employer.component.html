@@ -1,20 +1,51 @@
-<mat-card class="login-card">
-    <mat-card-header>
-        <h2>Employer Login</h2>
-    </mat-card-header>
-    <mat-card-content>
-        <form (ngSubmit)="login()" [formGroup]="loginEmployerForm" #loginForm="ngForm">
-            <mat-form-field class="full-width">
-                <mat-label>Username</mat-label>
-                <input matInput placeholder="jobiss"  formControlName="username" required>
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <mat-label>Password</mat-label>
-                <input matInput placeholder="********" type="password"  formControlName="password"
-                    required>
-            </mat-form-field>
-            <button mat-stroked-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
-        </form>
-        <p class="signup-link">Not signed up yet? <a mat-stroked-button color="warn" routerLink="/employer/create-employer">Sign Up</a></p>
-    </mat-card-content>
-</mat-card>
+<div class="login-wrapper">
+    <div class="login-container">
+        <!-- Left Side: Visuals -->
+        <div class="login-visual">
+            <div class="visual-content">
+                <h2>Welcome Back!</h2>
+                <p>Log in to manage your job postings and find the best talent.</p>
+                <div class="visual-decoration"></div>
+            </div>
+        </div>
+
+        <!-- Right Side: Form -->
+        <div class="login-form-section">
+            <div class="form-header">
+                <h3>Employer Login</h3>
+                <p>Enter your credentials to access your account</p>
+            </div>
+
+            <form (ngSubmit)="login()" [formGroup]="loginEmployerForm" #loginForm="ngForm">
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Enter your username" formControlName="username" required>
+                    <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your password"
+                        formControlName="password" required>
+                    <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                        [attr.aria-label]="'Hide password'" type="button">
+                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-hint *ngIf="false">Minimum 8 characters</mat-hint>
+                </mat-form-field>
+
+                <div class="form-actions">
+                    <button mat-flat-button color="primary" class="login-btn" type="submit"
+                        [disabled]="loginForm.invalid">
+                        Log In
+                    </button>
+                </div>
+            </form>
+
+            <div class="form-footer">
+                <p>Don't have an account? <a routerLink="/employer/create-employer" class="signup-link">Create
+                        Account</a></p>
+            </div>
+        </div>
+    </div>
+</div>

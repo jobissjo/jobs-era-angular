@@ -1,61 +1,83 @@
-<div [formGroup]="personalInformation" class="personal-information-form form">
-    <h2>Personal Details </h2>
-    <div class="form-control-row">
-        <mat-form-field>
-            <mat-label>First Name</mat-label>
-            <input matInput placeholder="Tobi" formControlName="firstName">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Last Name</mat-label>
-            <input matInput placeholder="Jo" formControlName="lastName">
-        </mat-form-field>
+<div [formGroup]="personalInformation" class="form-container">
+    <div class="form-section">
+        <h3 class="section-title">Personal Details</h3>
+
+        <div class="input-row">
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="Ex. John" formControlName="firstName">
+                <mat-icon matSuffix>person_outline</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Ex. Doe" formControlName="lastName">
+            </mat-form-field>
+        </div>
+
+        <div class="input-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Email Address</mat-label>
+                <input matInput placeholder="john@example.com" formControlName="email" type="email">
+                <mat-icon matSuffix>mail_outline</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="johndoe123" formControlName="username">
+                <mat-icon matSuffix>alternate_email</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="input-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Phone Number</mat-label>
+                <input matInput placeholder="+1 234 567 8900" formControlName="phoneNumber">
+                <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>LinkedIn / Portfolio URL</mat-label>
+                <input matInput placeholder="https://linkedin.com/in/..." formControlName="socialMediaLink">
+                <mat-icon matSuffix>link</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="input-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Create a password" formControlName="password" type="password">
+                <mat-icon matSuffix>lock_outline</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput placeholder="Confirm password" formControlName="cPassword" type="password">
+                <mat-icon matSuffix>lock_open</mat-icon>
+            </mat-form-field>
+        </div>
+
+        <div class="input-row">
+            <mat-form-field appearance="outline">
+                <mat-label>Job Position</mat-label>
+                <input matInput placeholder="Ex. Hiring Manager" formControlName="position">
+                <mat-icon matSuffix>badge</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender">
+                    <mat-option value="male">Male</mat-option>
+                    <mat-option value="female">Female</mat-option>
+                    <mat-option value="prefer not to say">Prefer not to say</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
-    <div class="form-control-row">
-        <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="abc123@gmail.com" formControlName="email">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Username</mat-label>
-            <input matInput placeholder="jobito" formControlName="username">
-        </mat-form-field>
-    </div>
-    <div class="form-control-row">
-        <mat-form-field>
-            <mat-label>Phone Number</mat-label>
-            <input matInput placeholder="+91 1234567890" formControlName="phoneNumber">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Social Media Link</mat-label>
-            <input matInput placeholder="Social Media Link" formControlName="socialMediaLink">
-        </mat-form-field>
-    </div>
-    <div  class="form-control-row">
-        <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input matInput placeholder="********" formControlName="password" type="password">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Confirm Password</mat-label>
-            <input matInput placeholder="********" formControlName="cPassword" type="password">
-        </mat-form-field>
-    </div>
-    <div  class="form-control-row">
-        <mat-form-field>
-            <mat-label>Position</mat-label>
-            <input matInput placeholder="Hiring Manager" formControlName="position" required>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Gender</mat-label>
-            <mat-select formControlName="gender">
-                <mat-option value="male">Male</mat-option>
-                <mat-option value="female">Female</mat-option>
-                <mat-option value="prefer not to say">Prefer not to say</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    <div class="form-button-controls">
-        <button type="button" mat-stroked-button color="warn">Back</button>
-        <button type="button" mat-stroked-button (click)="nextTab()" color="primary">Next Page</button>
+
+    <div class="form-actions">
+        <button type="button" mat-button class="text-button">Cancel</button>
+        <button type="button" mat-flat-button color="primary" (click)="nextTab()">Next Step
+            <mat-icon>arrow_forward</mat-icon></button>
     </div>
 </div>
