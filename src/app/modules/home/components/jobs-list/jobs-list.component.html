@@ -1,13 +1,23 @@
-<!-- job-list.component.html -->
-
 <div class="job-list">
-    <div *ngFor="let job of jobDetails" class="job-card" (click)="onSelectedJob(job)">
-      <h2>{{ job.jobTitle }}</h2>
-      <p>{{ job.company }}</p>
-      <p><b>Salary : </b>{{ job.salary }} yearly</p>
-      <p><strong>Location : </strong>{{ job.location }}</p>
-      <p><strong>Type : </strong>{{ job.jobType }}</p>
-      <a (click)="onSelectedJob(job)">View Details</a>
+  <div *ngFor="let job of jobDetails" class="job-card" (click)="onSelectedJob(job)">
+    <div class="card-content">
+      <h2 class="job-title">{{ job.jobTitle }}</h2>
+      <p class="company-name">{{ job.company }}</p>
+
+      <div class="job-tags">
+        <span class="tag type-tag">{{ job.jobType }}</span>
+        <span *ngIf="job.location" class="tag location-tag">
+          {{ job.location }}
+        </span>
+      </div>
+
+      <div class="job-salary" *ngIf="job.salary">
+        <span class="material-icons">payments</span> {{ job.salary }} / year
+      </div>
+    </div>
+
+    <div class="card-action">
+      <span class="view-link">View Details <span class="material-icons arrow">arrow_forward</span></span>
     </div>
   </div>
-  
+</div>

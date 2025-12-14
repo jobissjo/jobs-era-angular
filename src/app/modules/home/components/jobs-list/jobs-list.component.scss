@@ -1,34 +1,119 @@
-// /* job-list.component.css */
-// /* job-list.component.css */
-
 .job-list {
   flex: 1;
-  padding: 20px;
+  padding: 1rem 0;
   overflow-y: auto;
   height: 75vh;
-  h2{
-    color: #007BFF;
+
+  /* Scrollbar styling for webkit */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 4px;
   }
 }
 
 .job-card {
-  border: 1px solid #ddd;
-  background-color: #E3E1D9;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
-  width: 80%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: var(--transition-base);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  &:hover{
-    border: 0.5px solid rgb(76, 76, 76);
-    background-color: #d0cfcb;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+
+    .view-link {
+      color: var(--primary-color);
+
+      .arrow {
+        transform: translateX(4px);
+      }
+    }
   }
 }
 
-a {
-  text-decoration: none;
-  color: #007BFF;
-  cursor: pointer;
+.job-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 0.5rem 0;
+}
+
+.company-name {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.job-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+
+  &.type-tag {
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--primary-color);
+  }
+
+  &.location-tag {
+    background-color: var(--bg-body);
+    color: var(--text-muted);
+  }
+}
+
+.job-salary {
+  font-size: 0.9rem;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 600;
+
+  .material-icons {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+  }
+}
+
+.card-action {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+  text-align: right;
+}
+
+.view-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: var(--transition-base);
+
+  .arrow {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+  }
 }

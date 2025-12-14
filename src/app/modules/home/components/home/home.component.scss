@@ -1,11 +1,52 @@
-.job-results-container{
+.home-page-container {
+    background-color: var(--bg-body);
+    min-height: 100vh;
+}
+
+.job-results-container {
     display: flex;
-    justify-content: space-around;
-    
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem 2rem;
+    align-items: flex-start;
+
+    @media (max-width: 1024px) {
+        flex-direction: column;
+    }
 }
-.container-1, .container-2{
-    width: 45vw;
+
+.container-1 {
+    flex: 1;
+    min-width: 0;
 }
-.home-page-container{
-    background-color: whitesmoke;
+
+.container-2 {
+    flex: 1.5;
+    position: sticky;
+    top: 90px;
+    height: calc(100vh - 110px);
+    overflow-y: auto;
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+
+    @media (max-width: 1024px) {
+        width: 100%;
+        height: auto;
+        position: static;
+        margin-top: 2rem;
+        flex: none;
+    }
+
+    /* Scrollbar styling */
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--border-color);
+        border-radius: 4px;
+    }
 }

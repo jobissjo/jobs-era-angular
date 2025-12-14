@@ -1,18 +1,56 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+.mat-toolbar {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-.mat-toolbar{
-  background-color: #5FBDFF;
+  /* Logo styling */
+  span:first-child {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-right: 2rem;
+  }
 }
-.main-name{
-  padding: auto 10px;
+
+/* Override Angular Material Button Colors if needed */
+button[mat-button] {
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: var(--transition-base);
+
+  &:hover {
+    color: var(--primary-color);
+    background: rgba(79, 70, 229, 0.05);
+    /* very light primary */
+  }
 }
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.notification-icon,
+.example-icon {
+  color: var(--text-muted);
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
 .hand-pointer {
   cursor: pointer;
 }
-
-.demo-section + .demo-section {
-  margin-top: 16px;
-}
-

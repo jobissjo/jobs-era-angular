@@ -1,3 +1,3 @@
 export const environment = {
-    fastApiMainUrl: 'https://learn-auth-crud-fastapi.onrender.com'
+    fastApiMainUrl: 'http://127.0.0.1:8000'
 };

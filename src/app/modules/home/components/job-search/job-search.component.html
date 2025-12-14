@@ -1,11 +1,26 @@
-<div class="search-container">
-    <form [formGroup]="searchForm" (ngSubmit)="onSearchClicked()">
-        <input type="text" placeholder="Job Title"
-         formControlName="jobTitle" class="big-input" oninput="if (this.value.includes('/')) { this.size = this.value.length + 2; } else { this.size = 10; }">
-        <input type="text" placeholder="Location" 
-        formControlName="location" class="big-input">
-        <input type="text" placeholder="Experience"
-        formControlName="experience" class="big-input">
-        <button type="submit" class="search-btn">Search</button>
-    </form>
+<div class="hero-section">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-content">
+        <h1 class="hero-title">Find Your <span class="highlight">Dream Job</span> Today</h1>
+        <p class="hero-subtitle">Millions of jobs. Find the one that's right for you.</p>
+
+        <form [formGroup]="searchForm" (ngSubmit)="onSearchClicked()" class="search-box">
+            <div class="input-group">
+                <span class="material-icons input-icon">search</span>
+                <input type="text" placeholder="Job Title, Keywords, or Company" formControlName="jobTitle">
+            </div>
+            
+            <div class="input-group middle-input">
+                <span class="material-icons input-icon">place</span>
+                <input type="text" placeholder="Location" formControlName="location">
+            </div>
+
+            <div class="input-group">
+                <span class="material-icons input-icon">work_outline</span>
+                <input type="text" placeholder="Experience" formControlName="experience">
+            </div>
+
+            <button type="submit" class="search-btn">Search Jobs</button>
+        </form>
+    </div>
 </div>

@@ -1,52 +1,61 @@
-<div class="job-details-conatiner" #detailsContainer>
+<div class="job-details-conatiner">
   <div class="job-details" *ngIf="selectedJob; else noSelectedJob">
     <div class="title-row">
       <h1>{{ selectedJob.jobTitle }}</h1>
-      <div>
+      <div class="action-buttons">
         <button mat-icon-button (click)="onClickSaved(selectedJob, bookmarkBtn)" #bookmarkBtn>
-          <mat-icon aria-label="Edit">bookmark</mat-icon>
+          <mat-icon>bookmark_border</mat-icon>
         </button>
         <button mat-icon-button (click)="onClickBlock(blockBtn)" #blockBtn>
-          <mat-icon aria-label="block">block</mat-icon>
+          <mat-icon color="warn">block</mat-icon>
         </button>
       </div>
     </div>
+
+    <div class="company-badge">{{ selectedJob.company }}</div>
+
+    <div class="meta-row">
+      <p><span class="material-icons">payments</span> {{ selectedJob.salary }}</p>
+      <p><span class="material-icons">place</span> {{ selectedJob.location }}</p>
+      <p><span class="material-icons">work</span> {{ selectedJob.jobType }}</p>
+      <p *ngIf="selectedJob.shift"><span class="material-icons">schedule</span> {{ selectedJob.shift }}</p>
+    </div>
+
     <mat-divider></mat-divider>
-    <p>{{ selectedJob.company }}</p>
-    <p>{{ selectedJob.salary }}</p>
-    <p>{{ selectedJob.location }}</p>
-    <p>{{ selectedJob.jobType }}</p>
-    <p>{{ selectedJob.shift }}</p>
-  
-    <h2>Description:</h2>
-    <ul>
-      <li *ngFor="let description of selectedJob.description">{{ description }}</li>
-    </ul>
-  
-    <h2>Qualifications:</h2>
-    <ul>
-      <li *ngFor="let qualification of selectedJob.qualifications">{{ qualification }}</li>
-    </ul>
-  
-    <h2>Additional Details:</h2>
-    <ul>
-      <li *ngFor="let detail of selectedJob.responsibilities">{{ detail }}</li>
-    </ul>
-    <mat-divider></mat-divider>
-    <div class="job-detail-footer" >
-      <button mat-stroked-button color="primary" (click)="goToJobApplicationPage(selectedJob.id)">
+
+    <div class="content-section">
+      <h2>Description</h2>
+      <ul>
+        <li *ngFor="let description of selectedJob.description">{{ description }}</li>
+      </ul>
+
+      <h2>Qualifications</h2>
+      <ul>
+        <li *ngFor="let qualification of selectedJob.qualifications">{{ qualification }}</li>
+      </ul>
+
+      <h2>Responsibilities</h2>
+      <ul>
+        <li *ngFor="let detail of selectedJob.responsibilities">{{ detail }}</li>
+      </ul>
+    </div>
+
+    <div class="job-detail-footer">
+      <button mat-raised-button color="primary" class="apply-btn" (click)="goToJobApplicationPage(selectedJob.id)">
         Apply Now
       </button>
-      <button mat-stroked-button >
-        <mat-icon color="warn" mat-icon-button aria-label="Delete">flag</mat-icon>
-        report job
+      <button mat-stroked-button color="warn" class="report-btn">
+        <mat-icon>flag</mat-icon> Report
       </button>
     </div>
   </div>
-  
-<ng-template #noSelectedJob>
-  <div class="no-jobs">
-    <p>No Jobs Has been Selected</p>
-  </div>
-</ng-template>
+
+  <ng-template #noSelectedJob>
+    <div class="no-jobs">
+      <div class="empty-state">
+        <mat-icon class="empty-icon">touch_app</mat-icon>
+        <p>Select a job to view details</p>
+      </div>
+    </div>
+  </ng-template>
 </div>
