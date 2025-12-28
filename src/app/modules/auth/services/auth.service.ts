@@ -32,19 +32,19 @@ export class AuthService {
 
     let headers = this.getHeader();
 
-    this.http.put<{message:string}>(`${environment.fastApiMainUrl}/users/me/change-password/`,{},
-      { params: params, headers:headers }).subscribe({
-        next:res=>{
+    this.http.put<{ message: string }>(`${environment.fastApiMainUrl}/users/me/change-password/`, {},
+      { params: params, headers: headers }).subscribe({
+        next: res => {
           console.log(res.message);
           this.handleMsgService.successMessage("Your password is changed successfully", "Password Changed")
-          setTimeout(()=> {
+          setTimeout(() => {
             this.router.navigate(['user'])
-          },500)
-          
+          }, 500)
+
         },
-        error:err=>{
+        error: err => {
           console.log(err);
-          
+
         }
       })
   }
@@ -75,16 +75,16 @@ export class AuthService {
       console.warn("username can't find");
       return
     }
-    
-    
+
+
     const formData = new HttpParams()
-      .set('grant_type', '')
+      .set('grant_type', 'password')
       .set('username', username)
       .set('password', password)
       .set('scope', '')
       .set('client_id', '')
       .set('client_secret', '');
-      console.log(username, password, formData);
+    console.log(username, password, formData);
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded');
 
@@ -97,7 +97,7 @@ export class AuthService {
           console.log(Role.EMPLOYER, Role.USER, this.userSubFA$.getValue());
 
           setTimeout(() => {
-            this.handleMsgService.successMessage("You successfully logged in","Login Successful")
+            this.handleMsgService.successMessage("You successfully logged in", "Login Successful")
             if (this.userSubFA$.getValue().role == 'user') {
               console.log("user");
               this.router.navigate(['user']);
@@ -105,14 +105,14 @@ export class AuthService {
             else if (this.userSubFA$.getValue().role == 'employer') {
               console.log("success");
 
-              setTimeout(()=> {
+              setTimeout(() => {
                 this.router.navigate(['employer', 'profile'])
-              },1000);
+              }, 1000);
             }
           }, 1000)
         },
         error: err => {
-          this.handleMsgService.errorMessage("Your username or email invalid","Login Failed")
+          this.handleMsgService.errorMessage("Your username or email invalid", "Login Failed")
         }
       });
   }
