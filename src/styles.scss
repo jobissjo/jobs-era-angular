@@ -40,7 +40,7 @@ body {
 
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', 'Roboto', sans-serif;
 }
 
 /* Global Utilities */
@@ -79,23 +79,234 @@ body {
 
 @import 'css-star-rating/scss/star-rating';
 
-/* Global Material Overrides for Larger Inputs */
-.mat-mdc-form-field-flex {
-    min-height: 56px !important;
-}
-
-.mdc-text-field--outlined {
-    --mdc-outlined-text-field-container-shape: 8px;
-    /* Slightly more rounded */
-}
-
-/* Increase input font size */
-.mat-mdc-input-element {
-    font-size: 16px !important;
-}
-
-/* More spacious form fields */
+/* Global Material MDC Form Field Overrides for Premium Aesthetics & Fixes */
 .mat-mdc-form-field {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
     width: 100%;
+    font-family: 'Inter', sans-serif;
+
+    /* Outlined Form Field Design */
+    .mdc-text-field--outlined {
+        --mdc-outlined-text-field-container-shape: 12px; /* Smooth rounded corners */
+        --mdc-outlined-text-field-outline-color: #cbd5e1; /* slate-300 */
+        --mdc-outlined-text-field-hover-outline-color: #94a3b8; /* slate-400 */
+        --mdc-outlined-text-field-focus-outline-color: var(--primary-color);
+        background-color: #f8fafc !important; /* light slate background */
+        transition: background-color 0.2s ease, border-color 0.2s ease;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+
+        &:not(.mdc-text-field--disabled):hover {
+            background-color: #f1f5f9 !important; /* darker tint on hover */
+        }
+
+        &.mdc-text-field--focused {
+            background-color: #ffffff !important; /* pure white when typing */
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); /* soft brand focus glow */
+        }
+    }
+
+    /* Fix vertical alignment of input & label */
+    .mat-mdc-form-field-flex {
+        align-items: center !important;
+    }
+
+    /* Stylized Floating Label */
+    .mat-mdc-floating-label {
+        font-family: 'Inter', sans-serif;
+        color: #64748b !important; /* slate-500 */
+        font-size: 0.95rem;
+
+        &.mdc-floating-label--float-above {
+            font-weight: 500;
+            color: var(--primary-color) !important;
+        }
+    }
+
+    /* Style the input text */
+    .mat-mdc-input-element {
+        font-size: 0.95rem !important;
+        font-weight: 400;
+        color: var(--text-main);
+    }
+
+    /* Stylized Suffix Icons */
+    .mat-mdc-form-field-suffix {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #94a3b8; /* slate-400 */
+        margin-left: 8px !important;
+        
+        .mat-icon {
+            font-size: 1.25rem !important;
+            width: 1.25rem !important;
+            height: 1.25rem !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s ease;
+        }
+    }
+
+    /* Fix label overlapping with suffix icons */
+    &:has(.mat-mdc-form-field-suffix) {
+        .mat-mdc-floating-label:not(.mdc-floating-label--float-above) {
+            max-width: calc(100% - 48px) !important;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+}
+
+/* Shared Employer Dashboard Layout Styles */
+.employer-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc; /* slate-50 background for dashboard */
+    font-family: 'Inter', sans-serif;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.dashboard-sidebar {
+    width: 280px;
+    background-color: #ffffff;
+    border-right: 1px solid rgba(226, 232, 240, 0.8);
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 1rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        padding: 1.5rem 1rem;
+    }
+
+    h3 {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #94a3b8; /* slate-400 */
+        letter-spacing: 0.05em;
+        margin: 0 0 1.5rem 0.75rem;
+    }
+
+    .mat-mdc-list {
+        padding-top: 0 !important;
+    }
+
+    .sidebar-link {
+        text-decoration: none;
+        display: block;
+        margin-bottom: 0.25rem;
+
+        .sidebar-item {
+            height: 46px !important;
+            border-radius: 10px;
+            font-size: 0.9rem !important;
+            font-weight: 500 !important;
+            color: #64748b !important; /* slate-500 */
+            transition: all 0.2s ease !important;
+            
+            .mdc-list-item__content {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+            
+            .mat-icon {
+                color: #94a3b8;
+                margin-right: 12px;
+                font-size: 1.25rem;
+                width: 1.25rem;
+                height: 1.25rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                transition: color 0.2s ease;
+            }
+
+            &:hover {
+                background-color: #f1f5f9 !important; /* slate-100 */
+                color: #1e293b !important;
+                
+                .mat-icon {
+                    color: #475569;
+                }
+            }
+        }
+
+        &.active-link {
+            .sidebar-item {
+                background-color: #eef2ff !important; /* indigo-50 */
+                color: var(--primary-color) !important;
+                font-weight: 600 !important;
+
+                .mat-icon {
+                    color: var(--primary-color) !important;
+                }
+            }
+        }
+    }
+}
+
+.dashboard-content-area {
+    flex-grow: 1;
+    padding: 3rem 2.5rem;
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    @media (max-width: 768px) {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Custom Mat Tab Styling (Double-compatible for MDC and Legacy) */
+.custom-tabs {
+    .mat-mdc-tab-header, .mat-tab-header {
+        border-bottom: 1px solid var(--border-color) !important;
+        background-color: #ffffff !important;
+    }
+
+    .mat-mdc-tab, .mdc-tab, .mat-tab-label {
+        font-family: 'Inter', sans-serif !important;
+        opacity: 1 !important;
+        
+        .mdc-tab__text-label {
+            color: var(--text-muted) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.95rem !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.025em;
+            transition: color 0.2s ease, font-weight 0.2s ease;
+        }
+
+        &.mdc-tab--active, &.mat-tab-label-active, &.mat-mdc-tab-active {
+            .mdc-tab__text-label {
+                color: var(--primary-color) !important;
+                font-weight: 700 !important;
+            }
+        }
+    }
+
+    /* Target the active tab indicator underline */
+    .mdc-tab-indicator__content--underline, .mat-ink-bar {
+        border-color: var(--primary-color) !important;
+        background-color: var(--primary-color) !important;
+        border-width: 3px !important;
+        height: 3px !important;
+        border-radius: 3px 3px 0 0;
+    }
+
+    /* Remove default background from tab body */
+    .mat-mdc-tab-body-content, .mat-tab-body-content {
+        background: transparent !important;
+    }
 }

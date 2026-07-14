@@ -117,3 +117,25 @@
     transition: transform 0.2s ease;
   }
 }
+
+.job-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+}
+
+.skill-tag {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-body);
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+  font-weight: 500;
+
+  &.skill-more {
+    background-color: transparent;
+    border-style: dashed;
+  }
+}

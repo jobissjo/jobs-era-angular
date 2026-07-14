@@ -1,22 +1,71 @@
-<div class="job-search-list">
-    <h2>Your searched Results</h2>
-
-    <div *ngFor="let job of jobDetails" class="job-card" (click)="onSelectedJob(job)">
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>{{ job.jobTitle }}</mat-card-title>
-                <mat-card-subtitle>{{ job.company }}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <p><b>Salary:</b> {{ job.salary }} yearly</p>
-                <p><strong>Location:</strong> {{ job.location }}</p>
-                <p><strong>Type:</strong> {{ job.jobType }}</p>
-            </mat-card-content>
-        </mat-card>
+<div class="search-result-container">
+    <div class="container-header">
+        <h2 class="search-title">Search Results</h2>
+        <p class="search-subtitle" *ngIf="!isLoading && jobDetails.length > 0">
+            We found {{ jobDetails.length }} matching job{{ jobDetails.length === 1 ? '' : 's' }} for you
+        </p>
     </div>
 
-    <div class="no-results" *ngIf="jobDetails.length == 0">
-        <p>No results found</p>
-        <button routerLink="" mat-button>Go to home page</button>
+    <!-- Loading State -->
+    <div class="loading-state" *ngIf="isLoading">
+        <mat-spinner diameter="50" color="primary"></mat-spinner>
+        <p class="loading-text">Finding the best matches for you...</p>
     </div>
+
+    <!-- Results State -->
+    <ng-container *ngIf="!isLoading">
+        <div class="job-grid" *ngIf="jobDetails.length > 0">
+            <div *ngFor="let job of jobDetails" class="job-card-wrapper" (click)="onSelectedJob(job)">
+                <mat-card class="premium-job-card">
+                    <mat-card-header>
+                        <div class="job-title-row">
+                            <mat-card-title class="job-title">{{ job.jobTitle }}</mat-card-title>
+                            <span class="job-badge">{{ job.jobType }}</span>
+                        </div>
+                        <mat-card-subtitle class="job-company">{{ job.company }}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="job-meta">
+                            <div class="meta-item">
+                                <mat-icon>payments</mat-icon>
+                                <span>{{ job.salary }}</span>
+                            </div>
+                            <div class="meta-item">
+                                <mat-icon>place</mat-icon>
+                                <span>{{ job.location }}</span>
+                            </div>
+                            <div class="meta-item" *ngIf="job.experience">
+                                <mat-icon>school</mat-icon>
+                                <span>{{ job.experience }} Exp</span>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+
+        <!-- No Results Found -->
+        <div class="no-results-state" *ngIf="jobDetails.length === 0 && hasSearched">
+            <div class="icon-circle">
+                <mat-icon>search_off</mat-icon>
+            </div>
+            <h3>No Jobs Found</h3>
+            <p>We couldn't find any positions matching your search. Try adjusting your search query or location filters.</p>
+            <button routerLink="" mat-raised-button color="primary" class="action-btn">
+                <mat-icon>arrow_back</mat-icon> Back to Home
+            </button>
+        </div>
+
+        <!-- Initial Landing State (if direct navigate/refresh) -->
+        <div class="initial-state" *ngIf="jobDetails.length === 0 && !hasSearched">
+            <div class="icon-circle explore-circle">
+                <mat-icon>explore</mat-icon>
+            </div>
+            <h3>Start Your Search</h3>
+            <p>Looking for a career change? Discover thousands of jobs matching your skills and experience.</p>
+            <button routerLink="" mat-raised-button color="primary" class="action-btn">
+                Start Searching
+            </button>
+        </div>
+    </ng-container>
 </div>

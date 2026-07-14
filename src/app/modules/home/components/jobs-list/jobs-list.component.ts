@@ -20,8 +20,6 @@ export class JobsListComponent implements OnInit{
         this.onSelectedJob(this.jobDetails[0])
       
     })
-
-    this.jobSearchService.getAllJobs()
   };
 
   onSelectedJob(jobDetail:JobDetails){

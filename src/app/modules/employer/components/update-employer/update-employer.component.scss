@@ -1,29 +1,45 @@
-.create-employer-container {
-    background-color: #6fc2fd;
-    padding: 20px; /* Add padding for better spacing */
+.update-form-container {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.mat-tab-group {
-    background-color: transparent; /* Set the background color of the tab group to transparent */
+.update-profile-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #1e293b;
+        margin: 0 0 0.25rem 0;
+        letter-spacing: -0.025em;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        color: #64748b;
+        margin: 0;
+    }
 }
 
-.mat-tab-body-wrapper {
-    display: flex;
-    justify-content: center; /* Center the tab content horizontally */
+.premium-tabs-card {
+    border-radius: 20px !important;
+    border: 1px solid rgba(226, 232, 240, 0.8) !important;
+    background: #ffffff !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.02), 0 4px 6px -2px rgba(0, 0, 0, 0.01) !important;
+    overflow: hidden;
+
+    ::ng-deep .mat-mdc-card-content {
+        padding: 0 !important;
+    }
 }
 
-.mat-tab-body {
-    width: 100%;
-}
+.tab-content-panel {
+    padding: 2.5rem;
+    background-color: transparent !important;
 
-/* Adjust the background color of individual tabs */
-.mat-tab-label {
-    background-color: #6fc2fd;
-}
-
-/* Ensure that the tab content has some space around it */
-.personal-information, .company-information, .additional-information {
-    background-color: rgb(207, 207, 207) !important;
-    padding: 20px;
-    border-radius: 8px; /* Optional: Add rounded corners for a better appearance */
+    @media (max-width: 640px) {
+        padding: 1.5rem;
+    }
 }

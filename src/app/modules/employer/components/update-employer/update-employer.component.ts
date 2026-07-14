@@ -28,7 +28,9 @@ export class UpdateEmployerComponent {
   companyInformation!: FormGroup;
   additionalInformation!: FormGroup;
   profileId:string = '';
+  employerId:string = '';
   ngOnInit(){
+    this.employerId = this.authService.currentUserIdSub.getValue();
     this.employerForm = this.fb.group({
       personalInformation: this.fb.group({
         firstName: ['',[Validators.required]],

@@ -1,38 +1,66 @@
-<div class="signup-container">
-    
-    <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
-        <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-        <h2>Sign Up</h2>
-        <div>
-            <label for="username">Username</label>
-            <input type="text" id="username" formControlName="username" placeholder="username">
-            <span class="error-msg" *ngIf="checkControlInValid('username')">
-            enter the correct username</span>
+<div class="signup-wrapper">
+    <div class="signup-card">
+        <mat-progress-bar mode="indeterminate" *ngIf="isLoading" class="custom-progress-bar"></mat-progress-bar>
+        
+        <div class="signup-header">
+            <h2>Join JobsEra</h2>
+            <p>Create an account to start your journey</p>
         </div>
 
-        <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" formControlName="email" placeholder="abc12@gmail.com">
-            <span class="error-msg" *ngIf="checkControlInValid('email')">
-            entered email formate is not correct</span>
-        </div>
+        <form [formGroup]="signupForm" (ngSubmit)="onFormSubmit()">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-wrapper">
+                    <span class="material-icons field-icon">person_outline</span>
+                    <input type="text" id="username" formControlName="username" placeholder="Enter your username">
+                </div>
+                <div class="error-msg-container" *ngIf="checkControlInValid('username')">
+                    <span class="material-icons error-icon">error_outline</span>
+                    <span class="error-text">Please enter a valid username</span>
+                </div>
+            </div>
 
-        <div>
-            <label for="password">Password</label>
-            <input type="password" id="password" formControlName="password" placeholder="********">
-            <span class="error-msg" *ngIf="checkControlInValid('password')">
-            entered password must be 8 letters</span>
-        </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-wrapper">
+                    <span class="material-icons field-icon">mail_outline</span>
+                    <input type="email" id="email" formControlName="email" placeholder="example@email.com">
+                </div>
+                <div class="error-msg-container" *ngIf="checkControlInValid('email')">
+                    <span class="material-icons error-icon">error_outline</span>
+                    <span class="error-text">Please enter a valid email address</span>
+                </div>
+            </div>
 
-        <div>
-            <label for="password">Confirm Password</label>
-            <input type="password" id="cpassword" formControlName="cPassword" placeholder="********">
-            <span class="error-msg" *ngIf="checkControlInValid('cPassword') || !checkSamePassword()">
-            password not matched</span>
-        </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-wrapper">
+                    <span class="material-icons field-icon">lock_outline</span>
+                    <input type="password" id="password" formControlName="password" placeholder="Create a password">
+                </div>
+                <div class="error-msg-container" *ngIf="checkControlInValid('password')">
+                    <span class="material-icons error-icon">error_outline</span>
+                    <span class="error-text">Password must be at least 8 characters long</span>
+                </div>
+            </div>
 
-        <button type="submit">Sign Up</button>
+            <div class="form-group">
+                <label for="cpassword">Confirm Password</label>
+                <div class="input-wrapper">
+                    <span class="material-icons field-icon">lock_open</span>
+                    <input type="password" id="cpassword" formControlName="cPassword" placeholder="Confirm your password">
+                </div>
+                <div class="error-msg-container" *ngIf="checkControlInValid('cPassword') || (!checkControlInValid('cPassword') && signupForm.get('cPassword')?.touched && !checkSamePassword())">
+                    <span class="material-icons error-icon">error_outline</span>
+                    <span class="error-text">Passwords do not match</span>
+                </div>
+            </div>
 
-        <p>Already have an account? <a [routerLink]="'/auth/sign-in'" class="login-link">SignIn</a></p>
-    </form>
+            <button type="submit" class="btn-submit">Sign Up</button>
+
+            <div class="signup-footer">
+                <p>Already have an account? <a [routerLink]="'/auth/sign-in'" class="login-link">Sign In</a></p>
+            </div>
+        </form>
+    </div>
 </div>

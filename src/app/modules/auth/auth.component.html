@@ -1,13 +1,28 @@
-<div>
-    <div class="auth-container">
-        <h1>Welcome to JobsEra</h1>
-        <p>If you don't have an account</p>
-        <a mat-stroked-button color="primary"
-          [routerLink]="'sign-up'">Sign Up</a>
-        <p>If you already have an account</p>
-        <a mat-stroked-button color="primary"
-        
-        [routerLink]="'sign-in'">Sign In</a>
-        <!-- class="sign-in-btn" -->
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h1 class="text-gradient">JobsEra Candidate Portal</h1>
+            <p>Your gateway to finding top career opportunities</p>
+        </div>
+
+        <div class="gateway-options">
+            <div class="option-card">
+                <span class="material-icons option-icon">lock_open</span>
+                <h3>Already Registered?</h3>
+                <p>Sign in to apply to new jobs and manage your ongoing applications.</p>
+                <a mat-flat-button color="primary" class="gateway-btn" [routerLink]="'sign-in'">Sign In</a>
+            </div>
+
+            <div class="option-card">
+                <span class="material-icons option-icon secondary">person_add_alt</span>
+                <h3>New to JobsEra?</h3>
+                <p>Create a candidate profile to showcase your skills and get hired.</p>
+                <a mat-stroked-button class="gateway-btn-stroked" [routerLink]="'sign-up'">Sign Up</a>
+            </div>
+        </div>
+
+        <div class="portal-footer">
+            <p>Hiring talent? <a [routerLink]="'/employer'" class="portal-link">Go to Employer Portal <span class="material-icons arrow-icon">arrow_forward</span></a></p>
+        </div>
     </div>
 </div>

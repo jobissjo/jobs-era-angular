@@ -7,17 +7,12 @@
         <form [formGroup]="searchForm" (ngSubmit)="onSearchClicked()" class="search-box">
             <div class="input-group">
                 <span class="material-icons input-icon">search</span>
-                <input type="text" placeholder="Job Title, Keywords, or Company" formControlName="jobTitle">
+                <input type="text" placeholder="Job Title, Keywords, or Company" formControlName="searchQuery">
             </div>
             
             <div class="input-group middle-input">
                 <span class="material-icons input-icon">place</span>
                 <input type="text" placeholder="Location" formControlName="location">
-            </div>
-
-            <div class="input-group">
-                <span class="material-icons input-icon">work_outline</span>
-                <input type="text" placeholder="Experience" formControlName="experience">
             </div>
 
             <button type="submit" class="search-btn">Search Jobs</button>

@@ -1,23 +1,72 @@
-<form [formGroup]="employerForm" (ngSubmit)="onFormSubmit()">
-    <mat-tab-group class="create-employer-container" #tabGroup>
-        <mat-tab label="Personal Information" #personalInfo>
-            <div class="personal-information" >
+<div class="employer-dashboard">
+  <!-- Shared Sidebar -->
+  <div class="dashboard-sidebar">
+    <h3>Employer Hub</h3>
+    <mat-list role="list">
+      <a class="sidebar-link" routerLink="/employer/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <mat-list-item class="sidebar-item"><mat-icon>person_outline</mat-icon>Profile</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-job" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>add_circle_outline</mat-icon>Create Job</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-openings" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>list_alt</mat-icon>Job Openings</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-applications" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>people_outline</mat-icon>Job Applications</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-company" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>business</mat-icon>Create Company</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/notification" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>notifications_none</mat-icon>Notifications</mat-list-item>
+      </a>
+      <a class="sidebar-link" [routerLink]="['/employer/update-employer']" [queryParams]="{ profile_id: employerId }" routerLinkActive="active-link" queryParamsHandling="merge">
+        <mat-list-item class="sidebar-item"><mat-icon>edit</mat-icon>Update Profile</mat-list-item>
+      </a>
+    </mat-list>
+  </div>
+
+  <!-- Content Area -->
+  <div class="dashboard-content-area">
+    <div class="update-profile-header">
+      <h2>Update Profile</h2>
+      <p class="subtitle">Keep your company and personal details up to date</p>
+    </div>
+
+    <form [formGroup]="employerForm" (ngSubmit)="onFormSubmit()" class="update-form-container">
+      <mat-card class="premium-tabs-card">
+        <mat-card-content>
+          <mat-tab-group class="custom-tabs" #tabGroup animationDuration="0ms">
+            
+            <!-- Tab 1: Personal Info -->
+            <mat-tab label="1. Personal Info" #personalInfo>
+              <div class="tab-content-panel">
                 <app-update-personal [personalInformation]="personalInformation"
-                (nextTabEvent)="goToNextTab(personalInfo.textLabel)"></app-update-personal>
-            </div>
-        </mat-tab>
-        <mat-tab label="Company Information" #companyInfo>
-            <div class="company-information">
+                  (nextTabEvent)="goToNextTab(personalInfo.textLabel)"></app-update-personal>
+              </div>
+            </mat-tab>
+            
+            <!-- Tab 2: Company Info -->
+            <mat-tab label="2. Company Info" #companyInfo>
+              <div class="tab-content-panel">
                 <app-company-info [companyInformation]="companyInformation"
-                (nextPageEmit)="goToNextTab(companyInfo.textLabel)"
-                (prevPageEmit)="goToPrevTab(companyInfo.textLabel)"></app-company-info>    
-            </div>
-        </mat-tab>
-        <mat-tab label="Additional Information" #addInfo>
-            <div class="additional-information">
+                  (nextPageEmit)="goToNextTab(companyInfo.textLabel)"
+                  (prevPageEmit)="goToPrevTab(companyInfo.textLabel)"></app-company-info>    
+              </div>
+            </mat-tab>
+            
+            <!-- Tab 3: Additional Details -->
+            <mat-tab label="3. Additional Details" #addInfo>
+              <div class="tab-content-panel">
                 <app-additional-info [additionalInformation]="additionalInformation"
-                (previousEmit)="goToPrevTab(addInfo.textLabel)"></app-additional-info>
-            </div>
-        </mat-tab>
-    </mat-tab-group>
-</form>
+                  (previousEmit)="goToPrevTab(addInfo.textLabel)"></app-additional-info>
+              </div>
+            </mat-tab>
+
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+</div>

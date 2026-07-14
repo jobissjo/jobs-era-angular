@@ -10,10 +10,12 @@ import { JobDetails } from 'src/app/shared/Models/job.type';
 })
 export class JobApplicationsComponent {
   jobPostings: JobDetails[] = []; // Populate this array with job postings data
+  employerId: string = '';
   private jobService: JobSearchService = inject(JobSearchService);
   private authService: AuthService = inject(AuthService);
 
   ngOnInit(): void {
+    this.employerId = this.authService.currentUserIdSub.getValue();
     this.getJobs()
   }
 

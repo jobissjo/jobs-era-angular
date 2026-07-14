@@ -4,8 +4,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-company-info',
   templateUrl: './company-info.component.html',
-  styleUrls: ['./company-info.component.scss',
-    './../../commonStyle/employer-common.styles.scss']
+  styleUrls: ['./company-info.component.scss']
 })
 export class CompanyInfoComponent {
   @Input() companyInformation!: FormGroup;

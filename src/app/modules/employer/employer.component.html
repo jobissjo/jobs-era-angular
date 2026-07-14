@@ -1,12 +1,28 @@
-<div class="employer-home-container">
-    <div class="employer-container">
-        <h1>Welcome to Employer Login</h1>
-        <p>If you don't have a employer account</p>
-        <a mat-stroked-button color="primary"
-          [routerLink]="'create-employer'">Create Account</a>
-        <p>If you already have a employer account</p>
-        <a mat-stroked-button color="primary"
-        [routerLink]="'login-employer'">Login</a>
+<div class="employer-home-wrapper">
+    <div class="employer-card">
+        <div class="employer-header">
+            <h1 class="text-gradient">JobsEra Employer Portal</h1>
+            <p>Connect with high-caliber industry professionals</p>
+        </div>
+
+        <div class="gateway-options">
+            <div class="option-card">
+                <span class="material-icons option-icon">business</span>
+                <h3>Already Registered?</h3>
+                <p>Log in to post job opportunities and manage candidate applications.</p>
+                <a mat-flat-button color="primary" class="gateway-btn" [routerLink]="'login-employer'">Log In</a>
+            </div>
+
+            <div class="option-card">
+                <span class="material-icons option-icon secondary">add_business</span>
+                <h3>New Employer?</h3>
+                <p>Create a corporate profile to start hiring the best talent today.</p>
+                <a mat-stroked-button class="gateway-btn-stroked" [routerLink]="'create-employer'">Create Account</a>
+            </div>
+        </div>
+
+        <div class="portal-footer">
+            <p>Looking for a job? <a [routerLink]="'/auth'" class="portal-link">Go to Candidate Portal <span class="material-icons arrow-icon">arrow_forward</span></a></p>
+        </div>
     </div>
-    <p class="user-route" >Go to User <a class="go-to-user" color="accent" mat-stroked-button [routerLink]="'/auth'">Login</a></p>
 </div>

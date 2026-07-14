@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CreateJobDetails, JobDetails } from 'src/app/shared/Models/job.type';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { UserNotificationService } from 'src/app/shared/service/user-notification.service';
@@ -13,8 +13,11 @@ import { HandleMessageService } from 'src/app/shared/service/handle-message.serv
 })
 export class JobSearchService {
 
-  jobObs$ = new Subject<JobDetails[]>();
-  searchResultJobs = new Subject<JobDetails[]>();
+  jobObs$ = new BehaviorSubject<JobDetails[]>([]);
+  searchResultJobs = new BehaviorSubject<JobDetails[]>([]);
+  isSearching$ = new BehaviorSubject<boolean>(false);
+  hasSearched$ = new BehaviorSubject<boolean>(false);
+  isLoadingJobs$ = new BehaviorSubject<boolean>(false);
   selectedJobObs$ = new Subject<JobDetails>();
   constructor(private http: HttpClient, private authService: AuthService,
     private notifyService: UserNotificationService, private route: Router,
@@ -23,9 +26,16 @@ export class JobSearchService {
 
 
   getAllJobs() {
-    this.http.get<JobDetails[]>(`${environment.fastApiMainUrl}/jobs/`).subscribe(res => {
-      this.jobObs$.next(res)
-
+    this.isLoadingJobs$.next(true);
+    this.http.get<JobDetails[]>(`${environment.fastApiMainUrl}/jobs/`).subscribe({
+      next: res => {
+        this.jobObs$.next(res);
+        this.isLoadingJobs$.next(false);
+      },
+      error: err => {
+        this.jobObs$.next([]);
+        this.isLoadingJobs$.next(false);
+      }
     })
   }
 
@@ -53,20 +63,26 @@ export class JobSearchService {
     })
   }
 
-  searchJobs(jobTitle: string, location: string, experience:string) {
+  searchJobs(searchQuery: string, location: string) {
+    this.isSearching$.next(true);
+    this.hasSearched$.next(true);
 
     let params = new HttpParams()
-    params = params.append('job_title',jobTitle);
-    params = params.append('location',location);
-    params = params.append('experience',experience);
+    if (searchQuery) {
+      params = params.append('search_query', searchQuery);
+    }
+    if (location) {
+      params = params.append('location', location);
+    }
 
     this.http.get<JobDetails[]>(`${environment.fastApiMainUrl}/jobs/search-result/`, {params:params}).subscribe({
       next:res=>{
-        this.searchResultJobs.next(res)
-        
+        this.searchResultJobs.next(res);
+        this.isSearching$.next(false);
       },
       error:_err=> {
-        this.searchResultJobs.next([])
+        this.searchResultJobs.next([]);
+        this.isSearching$.next(false);
       },
     })
   }

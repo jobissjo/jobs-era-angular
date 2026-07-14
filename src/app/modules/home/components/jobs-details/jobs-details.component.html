@@ -19,6 +19,7 @@
       <p><span class="material-icons">place</span> {{ selectedJob.location }}</p>
       <p><span class="material-icons">work</span> {{ selectedJob.jobType }}</p>
       <p *ngIf="selectedJob.shift"><span class="material-icons">schedule</span> {{ selectedJob.shift }}</p>
+      <p *ngIf="selectedJob.experience"><span class="material-icons">school</span> {{ selectedJob.experience }} Experience</p>
     </div>
 
     <mat-divider></mat-divider>
@@ -38,6 +39,14 @@
       <ul>
         <li *ngFor="let detail of selectedJob.responsibilities">{{ detail }}</li>
       </ul>
+
+      <h2>Skills Required</h2>
+      <div class="skills-badges" *ngIf="selectedJob.skills && selectedJob.skills.length > 0; else noSkills">
+        <span class="skill-badge" *ngFor="let skill of selectedJob.skills">{{ skill }}</span>
+      </div>
+      <ng-template #noSkills>
+        <p>No specific skills listed.</p>
+      </ng-template>
     </div>
 
     <div class="job-detail-footer">

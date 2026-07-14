@@ -1,72 +1,113 @@
 <div class="employer-dashboard">
-  <div class="dashboard-options">
-    <h3>Dashboard</h3>
-    <!-- <ul>
-      <li><a routerLink="/employer/profile">Profile</a></li>
-      <li><a routerLink="/employer/create-job">Create Job</a></li>
-      <li><a routerLink="/employer/job-applications">Job Applications</a></li>
-      <li><a routerLink="/employer/job-openings">Job Details</a></li>
-      <li><a routerLink="/employer/create-company">Create Company</a></li>
-      <li><a routerLink="/employer/notification">Notifications</a></li>
-      <li><a (click)="logout()">Logout</a></li>
-    
-    </ul> -->
-
+  <!-- Shared Sidebar -->
+  <div class="dashboard-sidebar">
+    <h3>Employer Hub</h3>
     <mat-list role="list">
-      <a routerLink="/employer/profile"><mat-list-item class="list-item" role="listitem">Profile</mat-list-item></a>
-      <mat-divider></mat-divider>
-      <a routerLink="/employer/create-job"><mat-list-item class="list-item" role="listitem">Create Job</mat-list-item></a>
-      <mat-divider></mat-divider>
-      <a routerLink="/employer/job-applications"><mat-list-item class="list-item" role="listitem">Job Applications</mat-list-item></a>
-      <mat-divider></mat-divider>
-      <a routerLink="/employer/create-company"><mat-list-item class="list-item" role="listitem">Create Company</mat-list-item></a>
-      <mat-divider></mat-divider>
-      <a routerLink="/employer/notification"><mat-list-item class="list-item" role="listitem">Notifications</mat-list-item></a>
-      <mat-divider></mat-divider>
-      <a routerLink="/employer/job-openings"><mat-list-item class="list-item" role="listitem">Job Openings</mat-list-item></a>
-      <mat-divider></mat-divider>
-      <a [routerLink]="['/employer/update-employer']" [queryParams]="{ profile_id: employerId }" queryParamsHandling="merge">
-        <mat-list-item class="list-item" role="listitem">Update Profile</mat-list-item>
+      <a class="sidebar-link" routerLink="/employer/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <mat-list-item class="sidebar-item"><mat-icon>person_outline</mat-icon>Profile</mat-list-item>
       </a>
-      <mat-divider></mat-divider>
+      <a class="sidebar-link" routerLink="/employer/create-job" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>add_circle_outline</mat-icon>Create Job</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-openings" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>list_alt</mat-icon>Job Openings</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-applications" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>people_outline</mat-icon>Job Applications</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-company" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>business</mat-icon>Create Company</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/notification" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>notifications_none</mat-icon>Notifications</mat-list-item>
+      </a>
+      <a class="sidebar-link" [routerLink]="['/employer/update-employer']" [queryParams]="{ profile_id: employerId }" routerLinkActive="active-link" queryParamsHandling="merge">
+        <mat-list-item class="sidebar-item"><mat-icon>edit</mat-icon>Update Profile</mat-list-item>
+      </a>
     </mat-list>
-    
   </div>
-  <div class="employer-profile">
-    <mat-card class="employer-profile-card" *ngIf="employer;else loader">
-      <mat-card-header>
-        <mat-card-title>Employer Profile</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="user-pic">
-          <img src="https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png" alt="Anonymous User Icon">
-        </div>
-        <div class="personal-information">
-          <p><strong>Personal Information:</strong></p>
-          <p>{{employer.personalInformation.firstName}} {{employer.personalInformation.lastName}}</p>
-          <p>Username: {{employer.personalInformation.username}}</p>
-          <p>Email: {{employer.personalInformation.email}}</p>
-          <p>PhoneNumber: {{employer.personalInformation.phoneNumber}}</p>
-          <p>Position: {{employer.personalInformation.position}}</p>
-          <p>socialMediaLink: {{employer.personalInformation.socialMediaLink}}</p>
-          <!-- Add other personal information fields -->
-        </div>
-        <div class="company-information">
-          <p><strong>Company Information:</strong></p>
-          <p>Company Name: {{employer.companyInformation.companyName}}</p>
-          <p>Industry: {{employer.companyInformation.industry}}</p>
-          <p>Website: {{employer.companyInformation.companyWebsite}}</p>
-          <p>Social Media Link: {{employer.companyInformation.socialMediaLink}}</p>
-        </div>
-        <div class="additional-information">
-          <p><strong>Additional Information:</strong></p>
-          <p>Hear About Us: {{employer.additionalInformation.hearAboutUs}}</p>
-          <!-- Add other additional information fields -->
-        </div>
-      </mat-card-content>
-    </mat-card>
+
+  <!-- Content Area -->
+  <div class="dashboard-content-area">
+    <div class="profile-container" *ngIf="employer; else loader">
+      <mat-card class="premium-profile-card">
+        <mat-card-content>
+          <div class="profile-header">
+            <div class="avatar-wrapper">
+              <img src="https://api.dicebear.com/7.x/bottts/svg?seed=JobsEra" alt="Company Avatar" class="profile-avatar">
+            </div>
+            <div class="profile-title-info">
+              <h2>{{employer.personalInformation.firstName}} {{employer.personalInformation.lastName}}</h2>
+              <span class="position-badge">{{employer.personalInformation.position || 'Employer'}}</span>
+            </div>
+          </div>
+
+          <div class="info-grid">
+            <!-- Personal Info Section -->
+            <div class="info-section">
+              <h3 class="section-heading">Personal Details</h3>
+              <div class="detail-list">
+                <div class="detail-item">
+                  <span class="detail-label">Username</span>
+                  <span class="detail-val">{{employer.personalInformation.username}}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Email Address</span>
+                  <span class="detail-val">{{employer.personalInformation.email}}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Phone Number</span>
+                  <span class="detail-val">{{employer.personalInformation.phoneNumber}}</span>
+                </div>
+                <div class="detail-item" *ngIf="employer.personalInformation.socialMediaLink">
+                  <span class="detail-label">LinkedIn / Portfolio</span>
+                  <a [href]="employer.personalInformation.socialMediaLink" target="_blank" class="detail-val link">{{employer.personalInformation.socialMediaLink}}</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Company Info Section -->
+            <div class="info-section">
+              <h3 class="section-heading">Company Details</h3>
+              <div class="detail-list">
+                <div class="detail-item">
+                  <span class="detail-label">Company Name</span>
+                  <span class="detail-val font-semibold">{{employer.companyInformation.companyName}}</span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-label">Industry</span>
+                  <span class="detail-val">{{employer.companyInformation.industry}}</span>
+                </div>
+                <div class="detail-item" *ngIf="employer.companyInformation.companyWebsite">
+                  <span class="detail-label">Website</span>
+                  <a [href]="employer.companyInformation.companyWebsite" target="_blank" class="detail-val link">{{employer.companyInformation.companyWebsite}}</a>
+                </div>
+                <div class="detail-item" *ngIf="employer.companyInformation.socialMediaLink">
+                  <span class="detail-label">Company LinkedIn</span>
+                  <a [href]="employer.companyInformation.socialMediaLink" target="_blank" class="detail-val link">{{employer.companyInformation.socialMediaLink}}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Info Section -->
+          <div class="info-section full-width" *ngIf="employer.additionalInformation.hearAboutUs">
+            <h3 class="section-heading">Other Details</h3>
+            <div class="detail-list">
+              <div class="detail-item horizontal">
+                <span class="detail-label">How did you hear about us?</span>
+                <span class="detail-val">{{employer.additionalInformation.hearAboutUs}}</span>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
     <ng-template #loader>
-      <mat-spinner></mat-spinner>
+      <div class="loader-container">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
     </ng-template>
   </div>
 </div>

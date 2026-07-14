@@ -16,16 +16,16 @@
 }
 
 .checkbox-wrapper {
-    margin: 1.5rem 0 2rem;
+    margin: 2rem 0 2.5rem;
     padding: 1.5rem;
-    background-color: white;
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
+    background-color: #f8fafc;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    border-radius: 12px;
 
     a {
         color: var(--primary-color);
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 600;
 
         &:hover {
             text-decoration: underline;
@@ -36,14 +36,45 @@
 .form-button-controls {
     display: flex;
     justify-content: space-between;
-    gap: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-color);
-    margin-top: 2rem;
+    gap: 1.25rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    margin-top: 2.5rem;
 }
 
 button {
     height: 48px;
     padding: 0 2rem;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 10px !important;
+    font-family: 'Inter', sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &[mat-flat-button] {
+        background: var(--primary-color) !important;
+        color: white !important;
+        box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px -2px rgba(79, 70, 229, 0.3), 0 3px 6px -2px rgba(79, 70, 229, 0.2);
+            background: var(--primary-hover) !important;
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &[mat-stroked-button] {
+        border-color: #cbd5e1 !important;
+        color: var(--text-muted) !important;
+
+        &:hover {
+            background-color: #f1f5f9 !important;
+            border-color: #94a3b8 !important;
+            color: var(--text-main) !important;
+        }
+    }
 }

@@ -1,8 +1,22 @@
 <div class="home-page-container">
     <app-job-search></app-job-search>
 
-    <div class="job-results-container">
+    <!-- Loading State -->
+    <div class="loading-state" *ngIf="isLoading">
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>Loading latest jobs...</p>
+    </div>
+
+    <!-- Results Container -->
+    <div class="job-results-container" *ngIf="!isLoading && hasJobs">
         <app-jobs-list class="container-1"></app-jobs-list>
         <app-jobs-details class="container-2"></app-jobs-details>
+    </div>
+
+    <!-- No Jobs State -->
+    <div class="no-jobs-state" *ngIf="!isLoading && !hasJobs">
+        <mat-icon class="no-jobs-icon">work_outline</mat-icon>
+        <h3>No Jobs Available</h3>
+        <p>There are no job openings posted at the moment. Please check back later!</p>
     </div>
 </div>

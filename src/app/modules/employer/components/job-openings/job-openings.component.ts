@@ -15,12 +15,14 @@ import { HandleMessageService } from 'src/app/shared/service/handle-message.serv
 })
 export class JobOpeningsComponent implements OnInit {
   jobPostings: JobDetails[] = []; // Populate this array with job postings data
+  employerId: string = '';
   private jobService: JobSearchService = inject(JobSearchService);
   private authService: AuthService = inject(AuthService);
   private dialogue: MatDialog = inject(MatDialog);
   private handleMsgService: HandleMessageService = inject(HandleMessageService);
   private route: Router = inject(Router)
   ngOnInit(): void {
+    this.employerId = this.authService.currentUserIdSub.getValue();
     this.getJobs()
   }
 

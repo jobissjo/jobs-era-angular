@@ -14,6 +14,11 @@
       <div class="job-salary" *ngIf="job.salary">
         <span class="material-icons">payments</span> {{ job.salary }} / year
       </div>
+
+      <div class="job-skills" *ngIf="job.skills && job.skills.length">
+        <span class="skill-tag" *ngFor="let skill of job.skills | slice:0:3">{{ skill }}</span>
+        <span class="skill-tag skill-more" *ngIf="job.skills.length > 3">+{{ job.skills.length - 3 }}</span>
+      </div>
     </div>
 
     <div class="card-action">

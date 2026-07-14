@@ -18,23 +18,18 @@ export class JobSearchComponent {
   }
 
   ngOnInit() {
-    // debugger
     this.searchForm = new FormGroup({
-      jobTitle: new FormControl('', [Validators.required]),
-      location: new FormControl(''),
-      experience: new FormControl('')
-
+      searchQuery: new FormControl('', [Validators.required]),
+      location: new FormControl('')
     })
   }
 
   onSearchClicked() {
     if(this.searchForm.valid) {
-      console.log();
-      
       this.route.navigate(['search-result'])
-      const { jobTitle, location, experience } = this.searchForm.value;
-      console.log(jobTitle, location, experience);
-      this.jobService.searchJobs(jobTitle, location, experience)
+      const { searchQuery, location } = this.searchForm.value;
+      console.log(searchQuery, location);
+      this.jobService.searchJobs(searchQuery, location)
     }
 
   }

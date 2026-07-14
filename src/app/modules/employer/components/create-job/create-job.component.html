@@ -1,134 +1,195 @@
-<form [formGroup]="createJobForm" (ngSubmit)="onCreateJobSubmit()">
-    <h1 class="title">Create a Job</h1>
-    <mat-stepper #stepper class="stepper">
-        <mat-step class="step">
-            <ng-template matStepLabel>Fill out basic details</ng-template>
-            <div class="basic-details-container">
-                <!-- <h1 class="title">Basic Details</h1> -->
-                <div class="form-fields">
-                    <mat-form-field>
-                        <mat-label>Job Title</mat-label>
-                        <input matInput placeholder="Python Developer" formControlName="jobTitle" />
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Company Name</mat-label>
-                        <input matInput placeholder="Jo4Tech" formControlName="company" />
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Location</mat-label>
-                        <input matInput placeholder="Nagercoil" formControlName="location" />
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label> Schedule</mat-label>
-                        <input matInput placeholder="Day Shift" formControlName="shift" />
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Experience</mat-label>
-                        <input matInput placeholder="Fresher" formControlName="experience" />
-                    </mat-form-field>
-                    <mat-form-field>
-                        <mat-label>Job Type</mat-label>
-                        <input matInput placeholder="Full Time" formControlName="jobType" />
-                    </mat-form-field>
+<div class="employer-dashboard">
+  <!-- Shared Sidebar -->
+  <div class="dashboard-sidebar">
+    <h3>Employer Hub</h3>
+    <mat-list role="list">
+      <a class="sidebar-link" routerLink="/employer/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <mat-list-item class="sidebar-item"><mat-icon>person_outline</mat-icon>Profile</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-job" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>add_circle_outline</mat-icon>Create Job</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-openings" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>list_alt</mat-icon>Job Openings</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-applications" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>people_outline</mat-icon>Job Applications</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-company" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>business</mat-icon>Create Company</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/notification" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>notifications_none</mat-icon>Notifications</mat-list-item>
+      </a>
+      <a class="sidebar-link" [routerLink]="['/employer/update-employer']" [queryParams]="{ profile_id: employerId }" routerLinkActive="active-link" queryParamsHandling="merge">
+        <mat-list-item class="sidebar-item"><mat-icon>edit</mat-icon>Update Profile</mat-list-item>
+      </a>
+    </mat-list>
+  </div>
 
-                    <mat-form-field>
-                        <mat-label>Salary Range</mat-label>
-                        <input matInput placeholder="20000 - 35000" formControlName="salary" />
+  <!-- Content Area -->
+  <div class="dashboard-content-area">
+    <div class="form-container">
+      <form [formGroup]="createJobForm" (ngSubmit)="onCreateJobSubmit()">
+        <mat-card class="premium-form-card">
+          <mat-card-header>
+            <mat-card-title>{{updateMode ? 'Update' : 'Create'}} a Job Posting</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-stepper #stepper class="stepper custom-stepper">
+              
+              <!-- STEP 1: Basic Details -->
+              <mat-step>
+                <ng-template matStepLabel>Basic Details</ng-template>
+                <div class="step-content">
+                  <div class="form-fields-grid">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Job Title</mat-label>
+                      <input matInput placeholder="Ex. Python Developer" formControlName="jobTitle" />
                     </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                      <mat-label>Company Name</mat-label>
+                      <input matInput placeholder="Ex. Jo4Tech" formControlName="company" />
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                      <mat-label>Location</mat-label>
+                      <input matInput placeholder="Ex. Nagercoil" formControlName="location" />
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                      <mat-label>Schedule</mat-label>
+                      <input matInput placeholder="Ex. Day Shift" formControlName="shift" />
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                      <mat-label>Experience</mat-label>
+                      <input matInput placeholder="Ex. 2+ Years" formControlName="experience" />
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                      <mat-label>Job Type</mat-label>
+                      <input matInput placeholder="Ex. Full Time" formControlName="jobType" />
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline" class="col-span-2">
+                      <mat-label>Salary Range</mat-label>
+                      <input matInput placeholder="Ex. 20000 - 35000" formControlName="salary" />
+                    </mat-form-field>
+                  </div>
+                  
+                  <div class="step-actions">
+                    <button type="button" mat-flat-button color="primary" class="next-btn" matStepperNext>Next <mat-icon>arrow_forward</mat-icon></button>
+                  </div>
                 </div>
+              </mat-step>
 
-                <div>
-                    <button type="button" mat-flat-button color="accent" matStepperNext>Next</button>
-                </div>
-            </div>
-        </mat-step>
-        <mat-step label="Fill out qualification details">
-            <div class="qualification-details-container">
-                <div class="form-arrays">
-                    <div class="qualifications" formArrayName="qualifications">
-                        <h2>Qualifications</h2>
-                        <ng-container *ngFor="let control of qualificationArray.controls; let i=index">
-                            <mat-form-field>
-                                <mat-label>Qualification {{i+1}}</mat-label>
-                                <input matInput placeholder="B.E Computer Science" [formControlName]="i" />
-                            </mat-form-field>
-                            <button type="button" mat-flat-button color="warn"
-                                (click)="deleteQualification(i)">Delete</button>
-                        </ng-container>
-                        <div>
-                            <button type="button" mat-flat-button (click)="addQualification()" color="primary">Add
-                                Qualification</button>
-                        </div>
-                    </div>
-
-                    <!-- Skills Array Container -->
-                    <div class="skills" formArrayName="skills">
-                        <h2>Skills</h2>
-                        <ng-container *ngFor="let control of skillsArray.controls; let i=index">
-                            <mat-form-field>
-                                <mat-label>Skills {{i+1}}</mat-label>
-                                <input matInput placeholder="Django" [formControlName]="i">
-                            </mat-form-field>
-                            <button type="button" mat-flat-button color="warn" (click)="deleteSkill(i)">Delete</button>
-                        </ng-container>
-                        <div>
-                            <button type="button" mat-flat-button (click)="addSkill()" color="primary">Add Skills</button>
-                        </div>
-                    </div>
-
-                    <!-- Responsibilities Array Container -->
-                    <div class="responsibilities" formArrayName="responsibilities">
-                        <h2>Responsibilities</h2>
-                        <ng-container *ngFor="let control of responsibilityArray.controls; let i=index">
-                            <mat-form-field>
-                                <mat-label>Responsibility {{i+1}}</mat-label>
-                                <input matInput placeholder="Django" [formControlName]="i">
-                            </mat-form-field>
-                            <button type="button" mat-flat-button color="warn" (click)="deleteResponsibility(i)">Delete</button>
-                        </ng-container>
-                        <div>
-                            <button type="button" mat-flat-button (click)="addResponsibility()" color="primary">Add Responsibility</button>
-                        </div>
-                    </div>
-
-                    <!-- Description -->
-
-                    <!-- <div class="desc-container">
-                        <mat-form-field>
-                            <mat-label>Job Description</mat-label>
-                            <textarea matInput formControlName="description"
-                            placeholder="separate ',' with every description" >
-
-                            </textarea>
+              <!-- STEP 2: Qualifications & Details -->
+              <mat-step>
+                <ng-template matStepLabel>Requirements</ng-template>
+                <div class="step-content">
+                  <div class="form-arrays-layout">
+                    
+                    <!-- Qualifications -->
+                    <div class="array-section" formArrayName="qualifications">
+                      <h3>Qualifications</h3>
+                      <div class="array-item-row" *ngFor="let control of qualificationArray.controls; let i=index">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Qualification {{i+1}}</mat-label>
+                          <input matInput placeholder="Ex. B.E Computer Science" [formControlName]="i" />
                         </mat-form-field>
-                    </div> -->
-                    <div class="responsibilities" formArrayName="description">
-                        <h2>Descriptions</h2>
-                        <ng-container *ngFor="let control of descriptionArray.controls; let i=index">
-                            <mat-form-field>
-                                <mat-label>Description {{i+1}}</mat-label>
-                                <input matInput placeholder="Django" [formControlName]="i">
-                            </mat-form-field>
-                            <button type="button" mat-flat-button color="warn" (click)="deleteResponsibility(i)">Delete</button>
-                        </ng-container>
-                        <div>
-                            <button type="button" mat-flat-button (click)="addDescription()" color="primary">Add Description</button>
-                        </div>
+                        <button type="button" mat-icon-button color="warn" class="delete-btn" (click)="deleteQualification(i)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                      </div>
+                      <button type="button" mat-stroked-button class="add-btn" (click)="addQualification()" color="primary">
+                        <mat-icon>add</mat-icon> Add Qualification
+                      </button>
                     </div>
 
+                    <!-- Skills -->
+                    <div class="array-section" formArrayName="skills">
+                      <h3>Skills</h3>
+                      <div class="array-item-row" *ngFor="let control of skillsArray.controls; let i=index">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Skill {{i+1}}</mat-label>
+                          <input matInput placeholder="Ex. Django, Angular" [formControlName]="i">
+                        </mat-form-field>
+                        <button type="button" mat-icon-button color="warn" class="delete-btn" (click)="deleteSkill(i)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                      </div>
+                      <button type="button" mat-stroked-button class="add-btn" (click)="addSkill()" color="primary">
+                        <mat-icon>add</mat-icon> Add Skill
+                      </button>
+                    </div>
+
+                    <!-- Responsibilities -->
+                    <div class="array-section" formArrayName="responsibilities">
+                      <h3>Responsibilities</h3>
+                      <div class="array-item-row" *ngFor="let control of responsibilityArray.controls; let i=index">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Responsibility {{i+1}}</mat-label>
+                          <input matInput placeholder="Ex. Design web APIs" [formControlName]="i">
+                        </mat-form-field>
+                        <button type="button" mat-icon-button color="warn" class="delete-btn" (click)="deleteResponsibility(i)">
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                      </div>
+                      <button type="button" mat-stroked-button class="add-btn" (click)="addResponsibility()" color="primary">
+                        <mat-icon>add</mat-icon> Add Responsibility
+                      </button>
+                    </div>
+
+                    <!-- Descriptions -->
+                    <div class="array-section" formArrayName="description">
+                      <h3>Job Description Points</h3>
+                      <div class="array-item-row" *ngFor="let control of descriptionArray.controls; let i=index">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Description {{i+1}}</mat-label>
+                          <input matInput placeholder="Ex. Build reusable UI components" [formControlName]="i">
+                        </mat-form-field>
+                        <button type="button" mat-icon-button color="warn" class="delete-btn" (click)="deleteResponsibility(i)">
+                          <!-- Note: Keep matching TS function deleteResponsibility(i) -->
+                          <mat-icon>delete_outline</mat-icon>
+                        </button>
+                      </div>
+                      <button type="button" mat-stroked-button class="add-btn" (click)="addDescription()" color="primary">
+                        <mat-icon>add</mat-icon> Add Description Point
+                      </button>
+                    </div>
+
+                  </div>
+
+                  <div class="step-actions">
+                    <button type="button" mat-button matStepperPrevious color="primary" class="back-btn"><mat-icon>arrow_back</mat-icon> Back</button>
+                    <button type="button" mat-flat-button color="primary" class="next-btn" matStepperNext>Next <mat-icon>arrow_forward</mat-icon></button>
+                  </div>
                 </div>
-                <button type="button" mat-button matStepperPrevious color="primary">Back</button>
-                <button type="button" mat-button matStepperNext color="accent">Next</button>
-            </div>
-        </mat-step>
-        <mat-step>
-            <ng-template matStepLabel>Done</ng-template>
-            <p>Please verify you entered all the details and Submit</p>
-            <div>
-                <button type="button" color="primary" mat-button matStepperPrevious>Back</button>
-                <!-- <button type="button" color="warn" mat-button (click)="stepper.reset()">Reset</button> -->
-                <button type="submit" color="warn" mat-button >{{updateMode ? 'Update': 'Submit'}}</button>
-            </div>
-        </mat-step>
-    </mat-stepper>
-</form>
+              </mat-step>
+
+              <!-- STEP 3: Confirm & Submit -->
+              <mat-step>
+                <ng-template matStepLabel>Verify & Publish</ng-template>
+                <div class="step-content text-center">
+                  <div class="success-banner">
+                    <mat-icon class="banner-icon">check_circle_outline</mat-icon>
+                    <h3>Ready to Publish!</h3>
+                    <p>Please double-check all details before submitting. You can navigate back to make changes if needed.</p>
+                  </div>
+                  
+                  <div class="step-actions centered">
+                    <button type="button" mat-button matStepperPrevious color="primary" class="back-btn"><mat-icon>arrow_back</mat-icon> Back</button>
+                    <button type="submit" mat-flat-button color="accent" class="submit-btn">{{updateMode ? 'Update Posting': 'Publish Job'}}<mat-icon>publish</mat-icon></button>
+                  </div>
+                </div>
+              </mat-step>
+
+            </mat-stepper>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

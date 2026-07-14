@@ -3,73 +3,99 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f0fdf4 0%, #eef2ff 100%);
-    padding: 2rem;
+    background: linear-gradient(135deg, #eef2ff 0%, #fdf2f8 50%, #f0fdf4 100%);
+    padding: 3rem 2rem;
 }
 
 .registration-card {
     background: white;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
+    border-radius: 20px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
     width: 100%;
     max-width: 900px;
     overflow: hidden;
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 .card-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
+    padding: 3.5rem 2rem;
     text-align: center;
     color: white;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+        pointer-events: none;
+    }
 
     h1 {
-        margin: 0 0 1rem 0;
-        font-size: 2rem;
-        font-weight: 700;
+        margin: 0 0 0.5rem 0;
+        font-size: 2.25rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
     }
 
     p {
         margin: 0;
         opacity: 0.9;
         font-size: 1.1rem;
+        font-weight: 400;
     }
 }
 
 .tab-content {
-    /* Ensure no background color here */
     background: transparent;
-    padding: 2rem;
+    padding: 2.5rem;
     min-height: 400px;
 }
 
-/* Custom Mat Tab Styling */
+/* Custom Mat Tab Styling (Double-compatible for MDC and Legacy) */
 ::ng-deep .custom-tabs {
-    .mat-tab-header {
-        border-bottom: 1px solid var(--border-color);
-        background-color: white;
-        /* Changed from light gray to white */
+    .mat-mdc-tab-header, .mat-tab-header {
+        border-bottom: 1px solid var(--border-color) !important;
+        background-color: #ffffff !important;
     }
 
-    .mat-tab-label {
-        height: 60px;
-        opacity: 1;
-        color: var(--text-muted);
-        font-weight: 500;
+    .mat-mdc-tab, .mdc-tab, .mat-tab-label {
+        font-family: 'Inter', sans-serif !important;
+        opacity: 1 !important;
+        
+        .mdc-tab__text-label {
+            color: var(--text-muted) !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 0.95rem !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.025em;
+            transition: color 0.2s ease, font-weight 0.2s ease;
+        }
 
-        &.mat-tab-label-active {
-            color: var(--primary-color);
-            font-weight: 700;
+        &.mdc-tab--active, &.mat-tab-label-active, &.mat-mdc-tab-active {
+            .mdc-tab__text-label {
+                color: var(--primary-color) !important;
+                font-weight: 700 !important;
+            }
         }
     }
 
-    .mat-ink-bar {
+    /* Target the active tab indicator underline */
+    .mdc-tab-indicator__content--underline, .mat-ink-bar {
+        border-color: var(--primary-color) !important;
         background-color: var(--primary-color) !important;
+        border-width: 3px !important;
         height: 3px !important;
+        border-radius: 3px 3px 0 0;
     }
 
-    /* Remove any default background from tab body content */
-    .mat-tab-body-content {
+    /* Remove default background from tab body */
+    .mat-mdc-tab-body-content, .mat-tab-body-content {
         background: transparent !important;
     }
 }
@@ -81,11 +107,16 @@
     }
 
     .card-header {
-        padding: 2rem 1rem;
+        padding: 2.5rem 1rem;
+        h1 {
+            font-size: 1.75rem;
+        }
+        p {
+            font-size: 1rem;
+        }
     }
 
     .tab-content {
-        padding: 1rem;
-        padding-top: 2rem;
+        padding: 1.5rem 1rem;
     }
 }

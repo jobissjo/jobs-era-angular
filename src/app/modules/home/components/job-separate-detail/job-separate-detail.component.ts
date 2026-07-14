@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobDetails } from 'src/app/shared/Models/job.type';
 import { JobSearchService } from '../../services/job-search.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-job-separate-detail',
@@ -13,7 +14,7 @@ export class JobSeparateDetailComponent implements OnInit {
   isLoading: boolean = true;
   jobId!: string;
   constructor(private route: Router, private activeRoute: ActivatedRoute,
-    private jobService: JobSearchService
+    private jobService: JobSearchService, private location: Location
   ) {
 
   }
@@ -45,6 +46,9 @@ export class JobSeparateDetailComponent implements OnInit {
   }
   goToJobApplicationPage(id:string){
     this.route.navigate(['job-application', id])
+  }
+  goBack() {
+    this.location.back();
   }
 
 }

@@ -1,51 +1,145 @@
-<div class="job-details-conatiner" #detailsContainer *ngIf="!isLoading; else loading">
-    <h1>Job Details</h1>
-    <div class="job-details" *ngIf="selectedJob; else noSelectedJob">
-        <div class="title-row">
-            <h2>{{ selectedJob.jobTitle }}</h2>
-            <p>{{ selectedJob.company }}</p>
-            <p>{{ selectedJob.location }}</p>
+<div class="job-detail-page-container" *ngIf="!isLoading; else loading">
+    <!-- Back Navigation -->
+    <div class="back-nav-container">
+        <button mat-button class="back-btn" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon> Back to Search Results
+        </button>
+    </div>
+
+    <div class="job-detail-content" *ngIf="selectedJob; else noSelectedJob">
+        <!-- Hero Header Card -->
+        <div class="job-hero-card">
+            <div class="hero-main-info">
+                <span class="company-name">{{ selectedJob.company }}</span>
+                <h1 class="job-title">{{ selectedJob.jobTitle }}</h1>
+                <div class="hero-meta">
+                    <span class="meta-badge location-badge">
+                        <mat-icon>place</mat-icon> {{ selectedJob.location }}
+                    </span>
+                    <span class="meta-badge type-badge">
+                        <mat-icon>work</mat-icon> {{ selectedJob.jobType }}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="hero-actions">
+                <button mat-raised-button color="primary" class="apply-now-btn" (click)="goToJobApplicationPage(selectedJob.id)">
+                    Apply Now <mat-icon class="apply-icon">arrow_forward</mat-icon>
+                </button>
+                <button mat-icon-button class="action-icon-btn bookmark-btn" matTooltip="Save Job">
+                    <mat-icon>bookmark_border</mat-icon>
+                </button>
+                <button mat-icon-button class="action-icon-btn report-btn" matTooltip="Report Job">
+                    <mat-icon color="warn">flag</mat-icon>
+                </button>
+            </div>
         </div>
-        <mat-divider></mat-divider> 
-        <p>{{ selectedJob.salary }}</p> 
-        <p>{{ selectedJob.jobType }}</p>
-        <p>{{ selectedJob.shift }}</p>
-        <mat-divider></mat-divider>
-        <h2>Description:</h2>
-        <ul>
-            <li *ngFor="let description of selectedJob.description">{{ description }}</li>
-        </ul>
-        <mat-divider></mat-divider>
-        <h2>Qualifications:</h2>
-        <ul>
-            <li *ngFor="let qualification of selectedJob.qualifications">{{ qualification }}</li>
-        </ul>
-        <mat-divider></mat-divider>
-        <h2>Responsibilities:</h2>
-        <ul>
-            <li *ngFor="let detail of selectedJob.responsibilities">{{ detail }}</li>
-        </ul>
-        <mat-divider></mat-divider>
-        <div class="job-detail-footer">
-            <button mat-stroked-button color="primary" (click)="goToJobApplicationPage(selectedJob.id)">
-                Apply Now
-            </button>
-            <button mat-stroked-button>
-                <mat-icon color="warn" mat-icon-button aria-label="Delete">flag</mat-icon>
-                report job
-            </button>
+
+        <!-- 2-Column Layout -->
+        <div class="details-grid">
+            <!-- Main Content Area (Left) -->
+            <div class="main-details-col">
+                <!-- Description Section -->
+                <div class="content-card description-card">
+                    <h2>Job Description</h2>
+                    <ul class="styled-list">
+                        <li *ngFor="let description of selectedJob.description">{{ description }}</li>
+                    </ul>
+                </div>
+
+                <!-- Qualifications Section -->
+                <div class="content-card qualifications-card">
+                    <h2>Qualifications</h2>
+                    <ul class="styled-list">
+                        <li *ngFor="let qualification of selectedJob.qualifications">{{ qualification }}</li>
+                    </ul>
+                </div>
+
+                <!-- Responsibilities Section -->
+                <div class="content-card responsibilities-card">
+                    <h2>Responsibilities</h2>
+                    <ul class="styled-list">
+                        <li *ngFor="let detail of selectedJob.responsibilities">{{ detail }}</li>
+                    </ul>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="content-card skills-card">
+                    <h2>Skills Required</h2>
+                    <div class="skills-badges-container" *ngIf="selectedJob.skills && selectedJob.skills.length > 0; else noSkills">
+                        <span class="skill-badge" *ngFor="let skill of selectedJob.skills">{{ skill }}</span>
+                    </div>
+                    <ng-template #noSkills>
+                        <p class="no-skills-text">No specific skills listed.</p>
+                    </ng-template>
+                </div>
+            </div>
+
+            <!-- Sidebar / Quick Facts (Right) -->
+            <div class="sidebar-details-col">
+                <div class="quick-facts-card">
+                    <h3>Quick Job Facts</h3>
+                    <mat-divider></mat-divider>
+                    
+                    <div class="fact-item">
+                        <mat-icon class="fact-icon">payments</mat-icon>
+                        <div class="fact-info">
+                            <span class="fact-label">Salary Range</span>
+                            <span class="fact-value">{{ selectedJob.salary }}</span>
+                        </div>
+                    </div>
+
+                    <div class="fact-item" *ngIf="selectedJob.experience">
+                        <mat-icon class="fact-icon">school</mat-icon>
+                        <div class="fact-info">
+                            <span class="fact-label">Experience Required</span>
+                            <span class="fact-value">{{ selectedJob.experience }}</span>
+                        </div>
+                    </div>
+
+                    <div class="fact-item" *ngIf="selectedJob.shift">
+                        <mat-icon class="fact-icon">schedule</mat-icon>
+                        <div class="fact-info">
+                            <span class="fact-label">Job Shift</span>
+                            <span class="fact-value">{{ selectedJob.shift }}</span>
+                        </div>
+                    </div>
+
+                    <div class="fact-item">
+                        <mat-icon class="fact-icon">calendar_today</mat-icon>
+                        <div class="fact-info">
+                            <span class="fact-label">Job Type</span>
+                            <span class="fact-value">{{ selectedJob.jobType }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="fact-item">
+                        <mat-icon class="fact-icon">pin_drop</mat-icon>
+                        <div class="fact-info">
+                            <span class="fact-label">Location</span>
+                            <span class="fact-value">{{ selectedJob.location }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Empty State -->
     <ng-template #noSelectedJob>
-        <div class="no-jobs">
-            <p>No Jobs Has been Selected</p>
+        <div class="no-job-selected-card">
+            <mat-icon class="empty-icon">find_in_page</mat-icon>
+            <h3>Job Details Unavailable</h3>
+            <p>We couldn't load the details for this job posting. It may have been closed or deleted.</p>
+            <button routerLink="" mat-raised-button color="primary">Back to Home</button>
         </div>
     </ng-template>
 </div>
+
+<!-- Loading Template -->
 <ng-template #loading>
-    <div class="loading-container" >
-        <mat-spinner></mat-spinner>
-    
+    <div class="loading-state-container">
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>Loading job details...</p>
     </div>
 </ng-template>

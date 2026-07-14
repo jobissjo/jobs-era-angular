@@ -22,6 +22,7 @@ export class CreateJobComponent {
   updateJobId:string = '';
   updateMode:boolean = false;
   jobDetails!:JobDetails;
+  employerId: string = '';
   constructor(private _formBuilder: FormBuilder, private authService:AuthService,
     private jobService:JobSearchService, private handleMsgService:HandleMessageService,
     private activeRoute:ActivatedRoute, private route:Router
@@ -42,6 +43,7 @@ export class CreateJobComponent {
   }
 // responsibilities
   ngOnInit(){
+    this.employerId = this.authService.currentUserIdSub.getValue();
     this.qualificationArray = <FormArray> this.createJobForm.get('qualifications');
     this.skillsArray = <FormArray> this.createJobForm.get('skills')
     this.responsibilityArray = <FormArray> this.createJobForm.get('responsibilities');

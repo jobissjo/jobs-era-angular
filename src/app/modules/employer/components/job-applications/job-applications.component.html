@@ -1,11 +1,60 @@
-<div class="job-applications-container">
-    <h1>Job Applications</h1>
-    <div class="job-applications" *ngIf="jobPostings.length">
-        <div class="job-postings-container">
-            <app-jobs class="jobs" [jobPostings]="jobPostings"></app-jobs>
-        </div>
-        <div class="job-applicants-container">
-            <app-job-applicants class="job-applicants"></app-job-applicants>
-        </div>
+<div class="employer-dashboard">
+  <!-- Shared Sidebar -->
+  <div class="dashboard-sidebar">
+    <h3>Employer Hub</h3>
+    <mat-list role="list">
+      <a class="sidebar-link" routerLink="/employer/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <mat-list-item class="sidebar-item"><mat-icon>person_outline</mat-icon>Profile</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-job" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>add_circle_outline</mat-icon>Create Job</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-openings" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>list_alt</mat-icon>Job Openings</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-applications" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>people_outline</mat-icon>Job Applications</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-company" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>business</mat-icon>Create Company</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/notification" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>notifications_none</mat-icon>Notifications</mat-list-item>
+      </a>
+      <a class="sidebar-link" [routerLink]="['/employer/update-employer']" [queryParams]="{ profile_id: employerId }" routerLinkActive="active-link" queryParamsHandling="merge">
+        <mat-list-item class="sidebar-item"><mat-icon>edit</mat-icon>Update Profile</mat-list-item>
+      </a>
+    </mat-list>
+  </div>
+
+  <!-- Content Area -->
+  <div class="dashboard-content-area">
+    <div class="job-applications-header">
+      <h2>Job Applications</h2>
+      <p class="subtitle">Select a job opening to review received candidate applications</p>
     </div>
+
+    <div class="job-applications-split" *ngIf="jobPostings.length; else noApplications">
+      <div class="split-pane postings-pane">
+        <h3 class="pane-title"><mat-icon>list_alt</mat-icon> Your Job Openings</h3>
+        <div class="pane-scroll-container">
+          <app-jobs class="jobs" [jobPostings]="jobPostings"></app-jobs>
+        </div>
+      </div>
+      <div class="split-pane applicants-pane">
+        <h3 class="pane-title"><mat-icon>people_outline</mat-icon> Applicants</h3>
+        <div class="pane-scroll-container">
+          <app-job-applicants class="job-applicants"></app-job-applicants>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noApplications>
+      <div class="no-applications-empty">
+        <mat-icon class="empty-icon">group_off</mat-icon>
+        <h3>No Job Postings Found</h3>
+        <p>Create a job posting to start receiving applications from top candidates!</p>
+      </div>
+    </ng-template>
+  </div>
 </div>

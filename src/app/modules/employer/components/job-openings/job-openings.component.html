@@ -1,36 +1,89 @@
-<div class="job-postings">
-  <h1>Job Openings</h1>
-  <div class="row" *ngIf="jobPostings.length">
-    <div *ngFor="let job of jobPostings" class="job-details">
-      <div class="title-row">
-        <h2>{{ job.jobTitle }}</h2>
-        <div class="actions">
-          <button mat-icon-button color="primary" (click)="editJob(job.id)">
-            <mat-icon aria-label="Edit">edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="deleteJob(job.id)">
-            <mat-icon aria-label="Delete">delete</mat-icon>
-          </button>
-        </div>
-      </div>
-      <div class="details">
-        <p><strong>Company:</strong> {{ job.company }}</p>
-        <p><strong>Experience:</strong> {{ job.experience }}</p>
-        <p><strong>Salary:</strong> {{ job.salary }}</p>
-        <p><strong>Location:</strong> {{ job.location }}</p>
-        <p><strong>Job Type:</strong> {{ job.jobType }}</p>
-        <p><strong>Shift:</strong> {{ job.shift }}</p>
-        <p><strong>Description:</strong> {{ job.description }}</p>
-        <p><strong>Skills:</strong></p>
-        <ul>
-          <li *ngFor="let skill of job.skills">{{ skill }}</li>
-        </ul>
-      </div>
-    </div>
+<div class="employer-dashboard">
+  <!-- Shared Sidebar -->
+  <div class="dashboard-sidebar">
+    <h3>Employer Hub</h3>
+    <mat-list role="list">
+      <a class="sidebar-link" routerLink="/employer/profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <mat-list-item class="sidebar-item"><mat-icon>person_outline</mat-icon>Profile</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-job" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>add_circle_outline</mat-icon>Create Job</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-openings" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>list_alt</mat-icon>Job Openings</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/job-applications" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>people_outline</mat-icon>Job Applications</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/create-company" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>business</mat-icon>Create Company</mat-list-item>
+      </a>
+      <a class="sidebar-link" routerLink="/employer/notification" routerLinkActive="active-link">
+        <mat-list-item class="sidebar-item"><mat-icon>notifications_none</mat-icon>Notifications</mat-list-item>
+      </a>
+      <a class="sidebar-link" [routerLink]="['/employer/update-employer']" [queryParams]="{ profile_id: employerId }" routerLinkActive="active-link" queryParamsHandling="merge">
+        <mat-list-item class="sidebar-item"><mat-icon>edit</mat-icon>Update Profile</mat-list-item>
+      </a>
+    </mat-list>
   </div>
 
-  <div class="no-job-openings" *ngIf="jobPostings.length === 0">
-    <p>No job openings found.</p>
-    <button mat-raised-button color="primary" (click)="routerToCreateJob()">Create Job</button>
+  <!-- Content Area -->
+  <div class="dashboard-content-area">
+    <div class="job-postings-header">
+      <h2>Job Openings</h2>
+      <button mat-flat-button color="primary" class="create-btn" (click)="routerToCreateJob()">
+        <mat-icon>add</mat-icon> Create Job
+      </button>
+    </div>
+
+    <div class="jobs-grid" *ngIf="jobPostings.length; else noJobs">
+      <mat-card class="job-card" *ngFor="let job of jobPostings">
+        <mat-card-content>
+          <div class="job-title-row">
+            <h3 class="job-title">{{ job.jobTitle }}</h3>
+            <div class="job-actions">
+              <button mat-icon-button class="edit-action" (click)="editJob(job.id)">
+                <mat-icon>edit_calendar</mat-icon>
+              </button>
+              <button mat-icon-button class="delete-action" (click)="deleteJob(job.id)">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+          </div>
+
+          <div class="job-meta-grid">
+            <div class="meta-item"><mat-icon>business</mat-icon> <span>{{ job.company }}</span></div>
+            <div class="meta-item"><mat-icon>place</mat-icon> <span>{{ job.location }}</span></div>
+            <div class="meta-item"><mat-icon>work_outline</mat-icon> <span>{{ job.jobType }}</span></div>
+            <div class="meta-item"><mat-icon>schedule</mat-icon> <span>{{ job.shift }}</span></div>
+            <div class="meta-item"><mat-icon>school</mat-icon> <span>{{ job.experience }}</span></div>
+            <div class="meta-item"><mat-icon>payments</mat-icon> <span>{{ job.salary }}</span></div>
+          </div>
+
+          <div class="job-desc-section" *ngIf="job.description">
+            <span class="section-label">Description</span>
+            <p class="desc-text">{{ job.description }}</p>
+          </div>
+
+          <div class="job-skills-section" *ngIf="job.skills?.length">
+            <span class="section-label">Skills Required</span>
+            <div class="skills-pill-container">
+              <span class="skill-pill" *ngFor="let skill of job.skills">{{ skill }}</span>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <ng-template #noJobs>
+      <div class="no-job-openings">
+        <mat-icon class="empty-icon">work_off</mat-icon>
+        <h3>No Job Openings Found</h3>
+        <p>You haven't posted any jobs yet. Create your first job posting to start receiving applications!</p>
+        <button mat-flat-button color="primary" (click)="routerToCreateJob()">
+          <mat-icon>add</mat-icon> Create First Job
+        </button>
+      </div>
+    </ng-template>
   </div>
 </div>

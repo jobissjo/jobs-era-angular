@@ -1,70 +1,204 @@
-.employer-home-container {
-    margin: 100px auto;
-    max-width: 400px;
-    background-color: #f9f9f9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden; /* Ensures container's shadow doesn't overflow */
-}
-
-.employer-container {
-    padding: 25px;
-    text-align: center;
-}
-
-.employer-container h1 {
-    color: #4133ff;
-    margin-bottom: 20px;
-}
-
-.employer-container p {
-    margin-bottom: 15px;
-    color: #555;
-}
-
-.employer-container a {
-    display: inline-block;
-    margin-bottom: 10px;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 1px solid #4133ff;
-    color: #4133ff;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.employer-container a:hover {
-    background-color: #4133ff;
-    color: #fff;
-}
-
-.user-route {
-    text-align: center;
+.employer-home-wrapper {
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-}
+    justify-content: center;
+    background: linear-gradient(135deg, #eef2ff 0%, #fdf2f8 50%, #f0fdf4 100%);
+    padding: 3rem 2rem;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
 
-.go-to-user {
-    text-decoration: none;
-    color: #007bff;
-    margin-bottom: 10px; /* Adjust margin between text and button */
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: 1px solid #007bff;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.go-to-user:hover {
-    background-color: #007bff;
-    color: #fff;
-}
-
-
-/* Responsive Styling */
-@media screen and (max-width: 600px) {
-    .employer-home-container {
-        max-width: 90%;
+    &::before {
+        content: '';
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(circle, rgba(79, 70, 229, 0.12) 0%, transparent 70%);
+        top: -100px;
+        left: -100px;
+        z-index: 0;
     }
 }
 
+.employer-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+    width: 100%;
+    max-width: 680px;
+    padding: 3rem;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.employer-header {
+    margin-bottom: 3rem;
+
+    h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        margin: 0 0 0.5rem 0;
+        letter-spacing: -0.025em;
+    }
+
+    p {
+        font-size: 1.05rem;
+        color: #64748b; /* slate-500 */
+        margin: 0;
+        font-weight: 400;
+    }
+}
+
+.gateway-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.option-card {
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        border-color: #e2e8f0;
+    }
+
+    .option-icon {
+        font-size: 2.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 1.25rem;
+
+        &.secondary {
+            color: var(--secondary-color);
+        }
+    }
+
+    h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1e293b;
+        margin: 0 0 0.75rem 0;
+    }
+
+    p {
+        font-size: 0.875rem;
+        color: #64748b;
+        margin: 0 0 2rem 0;
+        line-height: 1.5;
+        flex-grow: 1;
+    }
+}
+
+.gateway-btn {
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.15) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
+
+    &:hover {
+        background-color: var(--primary-hover) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 12px -2px rgba(79, 70, 229, 0.25) !important;
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+.gateway-btn-stroked {
+    width: 100% !important;
+    height: 44px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    border-radius: 10px !important;
+    border-color: #cbd5e1 !important;
+    color: #475569 !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease !important;
+
+    &:hover {
+        background-color: #f8fafc !important;
+        border-color: #94a3b8 !important;
+        color: #1e293b !important;
+    }
+}
+
+.portal-footer {
+    border-top: 1px solid rgba(226, 232, 240, 0.8);
+    padding-top: 2rem;
+
+    p {
+        font-size: 0.95rem;
+        color: #64748b;
+        margin: 0;
+    }
+
+    .portal-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        transition: color 0.2s ease;
+        margin-left: 0.25rem;
+
+        &:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+
+            .arrow-icon {
+                transform: translateX(3px);
+            }
+        }
+
+        .arrow-icon {
+            font-size: 1rem;
+            transition: transform 0.2s ease;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .employer-home-wrapper {
+        padding: 1rem;
+    }
+
+    .employer-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .employer-header {
+        margin-bottom: 2rem;
+        h1 {
+            font-size: 1.75rem;
+        }
+    }
+}
